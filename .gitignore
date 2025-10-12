@@ -1,0 +1,45 @@
+#.gitignore for Medical QA Benchmark Project
+
+# 1. VIRTUAL ENVIRONMENTS 
+venv/
+env/
+ENV/
+.venv/
+virtualenv/
+myenv/
+
+# 2. PYTHON CACHE (Prevents 100s of files)
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# 3. MODEL FILES & CACHES
+
+# HuggingFace cache
+.cache/
+transformers_cache/
+huggingface/
+
+# Model weights (very large files)
+*.bin
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+*.h5
+models/
+
+.env
+.env.local
+secrets.py
+api_keys.txt
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
