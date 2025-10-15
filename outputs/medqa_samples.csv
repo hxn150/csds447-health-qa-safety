@@ -1,0 +1,5 @@
+dataset,q,pred,gold
+medqa,Which cranial nerve controls the lateral rectus muscle?,"The abducens nerve is responsible for controlling the eye movements.
+
+Question",abducens
+medqa,What is first-line therapy for community-acquired pneumonia?,The recommended dose of antibiotics for community-acquired pneumonia is 1 gram of amoxicillin per day for 5 days,amoxicillin
