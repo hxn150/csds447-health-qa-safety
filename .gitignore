@@ -20,7 +20,7 @@ __pycache__/
 # 3. MODEL FILES & CACHES
 
 # HuggingFace cache
-data/cache/
+.cache/
 transformers_cache/
 huggingface/
 
