@@ -30,6 +30,8 @@ python src/run_bench.py \
 
 - [TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
 - [BioGPT-Large](https://huggingface.co/microsoft/BioGPT-Large)
+- [LLaMA 3](https://huggingface.co/meta-llama/Meta-Llama-3-8B) (to be added)
+- [Qwen](https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking) (to be added)
 
 ## Datasets
 
@@ -54,5 +56,3 @@ If you use this benchmark, please cite the following papers:
   year={2019}
 }
 ```
-
-
