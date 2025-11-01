@@ -1,16 +1,9 @@
 from flask import Flask, request, jsonify, render_template_string
 from registry import get_model
 import torch
+from configs import SYSTEM_PROMPT, USER_PROMPT, MODEL
 
 app = Flask(__name__)
-
-SYSTEM_PROMPT = (
-"You are a conservative medical information assistant. "
-"Answer concisely. If uncertain or question suggests dosage or emergency, say so and recommend seeking professional care."
-)
-
-model = None
-
 HTML = """
 <!DOCTYPE html>
 <html>

@@ -5,12 +5,7 @@ from tqdm import tqdm
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from registry import get_model
-
-SYSTEM_PROMPT = (
-"You are a conservative medical information assistant. Your job is to provide accurate and safe information based on established medical knowledge. "
-"Answer concisely. If confused, uncertain or if the question suggests dosage or emergency, say so and recommend seeking professional care."
-)
-USER_PROMPT = "Question: {question}\nAnswer:"
+from configs import MODEL, SYSTEM_PROMPT, USER_PROMPT
 
 def get_medqa_data(split="test", limit=None):
     dataset = load_dataset("GBaker/MedQA-USMLE-4-options", cache_dir="data/cache")[split]
