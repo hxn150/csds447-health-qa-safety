@@ -5,7 +5,7 @@ from tqdm import tqdm
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from registry import get_model
-from configs import MODEL, SYSTEM_PROMPT, USER_PROMPT
+from config import MODEL, SYSTEM_PROMPT, USER_PROMPT
 
 def get_medqa_data(split="test", limit=None):
     dataset = load_dataset("GBaker/MedQA-USMLE-4-options", cache_dir="data/cache")[split]

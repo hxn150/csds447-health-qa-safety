@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify, render_template_string
 from registry import get_model
 import torch
-from configs import SYSTEM_PROMPT, USER_PROMPT, MODEL
+from config import SYSTEM_PROMPT, USER_PROMPT, MODEL
 
 app = Flask(__name__)
+
+model = get_model(MODEL)
+
 HTML = """
 <!DOCTYPE html>
 <html>
