@@ -19,11 +19,7 @@ pip install -r requirements.txt
 
 Run MedQA samples with two Hugging Face models:
 ```bash
-python src/run_bench.py \
-  --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 microsoft/BioGPT-Large \
-  --dataset medqa \
-  -n 20 \
-  --max_workers 1
+python src/run_bench.py --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset medqa -n 5 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
 ```
 
 ## Models
@@ -31,7 +27,7 @@ python src/run_bench.py \
 - [TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
 - [BioGPT-Large](https://huggingface.co/microsoft/BioGPT-Large)
 - [LLaMA 3](https://huggingface.co/meta-llama/Meta-Llama-3-8B) (to be added)
-- [Qwen](https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking) (to be added)
+- [Qwen](https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking) (judge model)
 
 ## Datasets
 

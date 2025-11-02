@@ -3,8 +3,10 @@ from pathlib import Path
 from datasets import load_dataset
 from tqdm import tqdm
 import pandas as pd
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from registry import get_model
+from judge import evaluate as evaluate_with_judge
 from config import MODEL, SYSTEM_PROMPT, USER_PROMPT
 
 def get_medqa_data(split="test", limit=None):
@@ -26,7 +28,14 @@ def generate_model_outputs(model_name: str, qa_list):
     for question, ground_truth in tqdm(qa_list, desc=f"{model_name}"):
         prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
         gen = model.generate(prompt, max_new_tokens=128)
+        # extract after last "Answer:" (keeps existing behaviour)
+        print("Full generated text:", gen)
         answer = gen.split("Answer:")[-1].strip() if "Answer:" in gen else gen.strip()
+        print("Extracted answer:", answer)
+        # remove any trailing content that looks like the next question
+        m = re.search(r"\nQuestion:\s", answer)
+        if m:
+            answer = answer[:m.start()].strip()
         output.append({"model": model_name, "question": question, "prediction": answer, "ground_truth": ground_truth})
     return output
 
@@ -39,6 +48,8 @@ def main():
     argument_parser.add_argument("-n", type=int, default=50, help="limit per dataset")
     argument_parser.add_argument("--out_dir", default="outputs")
     argument_parser.add_argument("--max_workers", type=int, default=1, help="parallel models (threads) that run at the same time")
+    argument_parser.add_argument("--judge_model", default=None,
+                    help="Optional model name used as the judge. If omitted, no judging is done.")
     args = argument_parser.parse_args()
 
     Path(args.out_dir).mkdir(exist_ok=True)
@@ -52,6 +63,9 @@ def main():
         for fut in as_completed(futs):
             model = futs[fut]
             output = fut.result()
+            # optionally evaluate predictions with a judge model
+            if args.judge_model:
+                output = evaluate_with_judge(output, judge_model_name=args.judge_model)
             dataframe = pd.DataFrame(output)
             per_path = Path(args.out_dir)/f"pred_{args.dataset}_{model.replace('/','_').replace(':','_')}.csv"
             dataframe.to_csv(per_path, index=False)
