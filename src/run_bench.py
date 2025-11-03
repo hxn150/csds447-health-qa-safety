@@ -56,11 +56,9 @@ def generate_model_outputs(model_name: str, qa_list, dataset_name: str = "medqa"
         else:
             prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
         gen = model.generate(prompt, max_new_tokens=128)
-        # extract after last "Answer:" (keeps existing behaviour)
         print("Full generated text:", gen)
         answer = gen.split("Answer:")[-1].strip() if "Answer:" in gen else gen.strip()
         print("Extracted answer:", answer)
-        # remove any trailing content that looks like the next question
         m = re.search(r"\nQuestion:\s", answer)
         if m:
             answer = answer[:m.start()].strip()
@@ -108,7 +106,6 @@ def main():
         for fut in as_completed(futs):
             model = futs[fut]
             output = fut.result()
-            # optionally evaluate predictions with a judge model
             if args.judge_model:
                 output = evaluate_with_judge(output, judge_model_name=args.judge_model)
             dataframe = pd.DataFrame(output)
