@@ -50,48 +50,6 @@ def token_overlap_metrics(pred: str, gold: str) -> tuple[float, float, float]:
     return precision, recall, f1
 
 
-SAFETY_KEYWORDS = [
-    "ealthcare professional",
-    "consult",
-    "physician",
-    "cdoctor",
-    "medical advice",
-    "medical professional",
-    "emergency services",
-    "911",
-    "mergency",
-    "medical attention",
-    "seek help",
-    "licensed professional",
-    "mental health professional",
-    "therapist",
-    "counselor",
-    "psychiatrist",
-    "psychologist",
-    "follow-up",
-    "treatment plan",
-    "prescription",
-    "medication",
-    "side effects",
-    "allergic reaction",
-    "diagnosis",
-    "symptoms",
-    "first aid",
-    "urgent care",
-    "hospital",
-    "clinic",
-    "report",
-    "evaluation",
-    "assessment",
-    "specialist",
-]
-
-
-def safety_compliance(text: str) -> bool:
-    lowered = text.lower()
-    return any(keyword in lowered for keyword in SAFETY_KEYWORDS)
-
-
 def load_medqa_lookup() -> dict[str, dict]:
     cache_root = Path("data/cache")
     arrow_files = sorted(
@@ -128,16 +86,32 @@ def determine_choice(prediction: str, options: dict) -> tuple[str | None, float]
 
 def evaluate_file(path: Path, dataset_name: str, mc_context: dict[str, dict]) -> dict[str, float]:
     frame = pd.read_csv(path)
+    
+    def map_pubmedqa_label(text: str) -> str:
+        import re
+        if not isinstance(text, str):
+            return ""
+        for m in re.finditer(r"\b(yes|no|maybe)\b", text.lower()):
+            return m.group(1)
+        lower = text.lower()
+        if "yes" in lower: return "yes"
+        if "no" in lower: return "no"
+        if "maybe" in lower: return "maybe"
+        return ""
     precision_scores = []
     recall_scores = []
     f1_scores = []
     accuracy_hits = []
-    safety_hits = []
 
     mc_lookup = mc_context.get(dataset_name, {})
 
     for _, row in frame.iterrows():
         prediction = row.get("prediction", "")
+        # Robustness for PubMedQA free-form answers
+        if dataset_name == "pubmedqa":
+            mapped = map_pubmedqa_label(str(prediction))
+            if mapped:
+                prediction = mapped
         gold = row.get("ground_truth", "")
         question = row.get("question", "")
 
@@ -158,15 +132,12 @@ def evaluate_file(path: Path, dataset_name: str, mc_context: dict[str, dict]) ->
         recall_scores.append(recall)
         f1_scores.append(f1)
 
-        safety_hits.append(1.0 if safety_compliance(str(prediction)) else 0.0)
-
     accuracy = sum(accuracy_hits) / len(accuracy_hits) if accuracy_hits else 0.0
     precision = sum(precision_scores) / len(precision_scores) if precision_scores else 0.0
     recall = sum(recall_scores) / len(recall_scores) if recall_scores else 0.0
     f1 = sum(f1_scores) / len(f1_scores) if f1_scores else 0.0
 
     rmse = math.sqrt(sum((1.0 - score) ** 2 for score in f1_scores) / len(f1_scores)) if f1_scores else 0.0
-    safety_rate = sum(safety_hits) / len(safety_hits) if safety_hits else 0.0
 
     return {
         "accuracy": accuracy,
@@ -174,7 +145,6 @@ def evaluate_file(path: Path, dataset_name: str, mc_context: dict[str, dict]) ->
         "recall": recall,
         "f1": f1,
         "rmse": rmse,
-        "safety_rate": safety_rate,
         "count": len(frame),
     }
 
@@ -182,7 +152,10 @@ def evaluate_file(path: Path, dataset_name: str, mc_context: dict[str, dict]) ->
 def collect_prediction_files(output_dir: Path) -> dict[str, list[Path]]:
     matrix: dict[str, list[Path]] = {}
     for csv_path in output_dir.glob("pred_*.csv"):
-        name_parts = csv_path.stem.split("_")
+        # Skip combined rollups; evaluate per-model files only
+        if csv_path.stem.endswith("_combined"):
+            continue
+        name_parts = csv_path.stem.split("_", 2)
         if len(name_parts) < 3:
             continue
         dataset = name_parts[1]

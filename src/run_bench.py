@@ -9,6 +9,9 @@ from registry import get_model
 from judge import evaluate as evaluate_with_judge
 from config import MODEL, SYSTEM_PROMPT, USER_PROMPT
 
+YES_NO_MAYBE = {"yes", "no", "maybe"}
+
+
 def get_medqa_data(split="test", limit=None):
     dataset = load_dataset("GBaker/MedQA-USMLE-4-options", cache_dir="data/cache")[split]
     for index, row in enumerate(dataset):
@@ -22,11 +25,36 @@ def get_pubmedqa_data(split="train", limit=None):
         ground_truth = row.get("final_decision") or row.get("long_answer","")
         yield row["question"], ground_truth
 
-def generate_model_outputs(model_name: str, qa_list):
+def _pubmedqa_prompt(question: str) -> str:
+    constraint = (
+        "Answer with one word only: yes, no, or maybe. "
+        "Do not add punctuation or explanation."
+    )
+    return f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}\n{constraint}"
+
+
+def _extract_pubmedqa_label(text: str) -> str:
+    import re
+    if not isinstance(text, str):
+        return ""
+    for m in re.finditer(r"\b(yes|no|maybe)\b", text.lower()):
+        return m.group(1)
+    # fallback: simple contains check
+    lower = text.lower()
+    if "yes" in lower: return "yes"
+    if "no" in lower: return "no"
+    if "maybe" in lower: return "maybe"
+    return ""
+
+
+def generate_model_outputs(model_name: str, qa_list, dataset_name: str = "medqa"):
     model = get_model(model_name)
     output = []
     for question, ground_truth in tqdm(qa_list, desc=f"{model_name}"):
-        prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
+        if dataset_name == "pubmedqa":
+            prompt = _pubmedqa_prompt(question)
+        else:
+            prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
         gen = model.generate(prompt, max_new_tokens=128)
         # extract after last "Answer:" (keeps existing behaviour)
         print("Full generated text:", gen)
@@ -36,7 +64,24 @@ def generate_model_outputs(model_name: str, qa_list):
         m = re.search(r"\nQuestion:\s", answer)
         if m:
             answer = answer[:m.start()].strip()
-        output.append({"model": model_name, "question": question, "prediction": answer, "ground_truth": ground_truth})
+        pred_value = answer
+        record = {"model": model_name, "question": question, "prediction": pred_value, "ground_truth": ground_truth}
+        if dataset_name == "pubmedqa":
+            inferred = _extract_pubmedqa_label(answer)
+            # Store raw for traceability
+            record["raw_prediction"] = answer
+            if inferred in YES_NO_MAYBE:
+                record["prediction"] = inferred
+            else:
+                # Deterministic fallback: classify among yes/no/maybe using model log-likelihoods
+                try:
+                    label = model.classify_options(_pubmedqa_prompt(question), ["yes", "no", "maybe"])
+                    if label in YES_NO_MAYBE:
+                        record["prediction"] = label
+                except Exception as e:
+                    # Keep existing prediction if classification fails
+                    pass
+        output.append(record)
     return output
 
 def main():
@@ -59,7 +104,7 @@ def main():
 
     results = []
     with ThreadPoolExecutor(max_workers=args.max_workers) as ex:
-        futs = {ex.submit(generate_model_outputs, model, qa_list): model for model in args.models}
+        futs = {ex.submit(generate_model_outputs, model, qa_list, args.dataset): model for model in args.models}
         for fut in as_completed(futs):
             model = futs[fut]
             output = fut.result()
