@@ -12,7 +12,7 @@ class HFChat:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
 
-    def generate(self, prompt:str, max_new_tokens=128, **gen_kwargs):
+    def generate(self, prompt:str, max_new_tokens=256, **gen_kwargs):
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
         input_ids = inputs["input_ids"]
         input_len = input_ids.shape[1]
