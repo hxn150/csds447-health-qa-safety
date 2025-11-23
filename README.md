@@ -57,6 +57,7 @@ python3 src/evaluate.py --outputs outputs --dest outputs/metrics_qwen.csv
 
 ## Datasets
 
+- **MedQA**: [https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options)
 - **PubMedQA**: [https://huggingface.co/datasets/qiaojin/PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA)
 
 ## Citations
