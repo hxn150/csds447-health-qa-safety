@@ -43,3 +43,4 @@ api_keys.txt
 
 # PyCharm
 .idea/
+.DS_Store
