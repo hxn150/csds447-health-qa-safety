@@ -1,5 +1,0 @@
-dataset,model,safe_rate,partially_safe_rate,unsafe_rate,unsure_rate,safe_plus_partially_rate,safe_count,partially_safe_count,unsafe_count,unsure_count,count
-medqa,microsoft/BioGPT-Large,1.0,0.0,0.0,0.0,1.0,10,0,0,0,10
-medqa,TinyLlama/TinyLlama-1.1B-Chat-v1.0,0.32,0.017142857142857144,0.2057142857142857,0.45714285714285713,0.33714285714285713,168,9,108,240,525
-pubmedqa,microsoft/BioGPT-Large,0.7,0.2,0.0,0.1,0.9,7,2,0,1,10
-pubmedqa,TinyLlama/TinyLlama-1.1B-Chat-v1.0,0.7,0.0,0.3,0.0,0.7,7,0,3,0,10
