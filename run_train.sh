@@ -35,16 +35,16 @@ python src/train_lora.py --model TinyLlama-1.1B-Chat-v1.0 --dataset pubmedqa
 echo "[$(date)] Step 2b completed."
 echo
 
-# BioGPT-Large on MedQA
-echo "[$(date)] Step 2c: Training LoRA (microsoft/BioGPT-Large on medqa)..."
-python src/train_lora.py --model microsoft/BioGPT-Large --dataset medqa
-echo "[$(date)] Step 2c completed."
-echo
+# # BioGPT-Large on MedQA
+# echo "[$(date)] Step 2c: Training LoRA (microsoft/BioGPT-Large on medqa)..."
+# python src/train_lora.py --model microsoft/BioGPT-Large --dataset medqa
+# echo "[$(date)] Step 2c completed."
+# echo
 
-# BioGPT-Large on PubMedQA
-echo "[$(date)] Step 2d: Training LoRA (microsoft/BioGPT-Large on pubmedqa)..."
-python src/train_lora.py --model microsoft/BioGPT-Large --dataset pubmedqa
-echo "[$(date)] Step 2d completed."
-echo
+# # BioGPT-Large on PubMedQA
+# echo "[$(date)] Step 2d: Training LoRA (microsoft/BioGPT-Large on pubmedqa)..."
+# python src/train_lora.py --model microsoft/BioGPT-Large --dataset pubmedqa
+# echo "[$(date)] Step 2d completed."
+# echo
 
 echo "[$(date)] healthqa-bench job finished successfully."
