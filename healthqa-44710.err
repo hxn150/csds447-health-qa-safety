@@ -1,108 +1,0 @@
-Map:   0%|          | 0/10178 [00:00<?, ? examples/s]Map:   1%|          | 112/10178 [00:00<00:09, 1007.11 examples/s]Map:   3%|▎         | 264/10178 [00:00<00:07, 1251.66 examples/s]Map:   4%|▍         | 408/10178 [00:00<00:07, 1301.25 examples/s]Map:   6%|▌         | 560/10178 [00:00<00:07, 1349.92 examples/s]Map:   7%|▋         | 704/10178 [00:00<00:06, 1358.44 examples/s]Map:   8%|▊         | 848/10178 [00:00<00:06, 1367.58 examples/s]Map:  10%|▉         | 992/10178 [00:00<00:06, 1385.53 examples/s]Map:  11%|█         | 1136/10178 [00:00<00:06, 1395.17 examples/s]Map:  13%|█▎        | 1280/10178 [00:00<00:06, 1386.36 examples/s]Map:  14%|█▍        | 1424/10178 [00:01<00:06, 1388.08 examples/s]Map:  15%|█▌        | 1568/10178 [00:01<00:06, 1394.04 examples/s]Map:  17%|█▋        | 1712/10178 [00:01<00:06, 1376.70 examples/s]Map:  18%|█▊        | 1856/10178 [00:01<00:06, 1373.04 examples/s]Map:  20%|█▉        | 2000/10178 [00:01<00:05, 1388.61 examples/s]Map:  21%|██        | 2144/10178 [00:01<00:05, 1384.93 examples/s]Map:  22%|██▏       | 2288/10178 [00:01<00:05, 1389.06 examples/s]Map:  24%|██▍       | 2432/10178 [00:01<00:05, 1399.81 examples/s]Map:  25%|██▌       | 2576/10178 [00:01<00:05, 1357.18 examples/s]Map:  27%|██▋       | 2720/10178 [00:01<00:05, 1376.22 examples/s]Map:  28%|██▊       | 2864/10178 [00:02<00:05, 1366.24 examples/s]Map:  30%|██▉       | 3008/10178 [00:02<00:05, 1377.10 examples/s]Map:  31%|███       | 3160/10178 [00:02<00:05, 1393.87 examples/s]Map:  32%|███▏      | 3304/10178 [00:02<00:04, 1386.24 examples/s]Map:  34%|███▍      | 3448/10178 [00:02<00:04, 1377.76 examples/s]Map:  35%|███▌      | 3592/10178 [00:02<00:04, 1391.17 examples/s]Map:  37%|███▋      | 3736/10178 [00:02<00:04, 1390.86 examples/s]Map:  38%|███▊      | 3880/10178 [00:02<00:04, 1387.72 examples/s]Map:  40%|███▉      | 4024/10178 [00:02<00:04, 1390.44 examples/s]Map:  41%|████      | 4168/10178 [00:03<00:04, 1390.34 examples/s]Map:  42%|████▏     | 4312/10178 [00:03<00:04, 1395.45 examples/s]Map:  44%|████▍     | 4456/10178 [00:03<00:04, 1386.05 examples/s]Map:  45%|████▌     | 4600/10178 [00:03<00:04, 1377.46 examples/s]Map:  47%|████▋     | 4752/10178 [00:03<00:03, 1391.78 examples/s]Map:  48%|████▊     | 4896/10178 [00:03<00:03, 1395.76 examples/s]Map:  50%|████▉     | 5080/10178 [00:03<00:03, 1301.74 examples/s]Map:  51%|█████▏    | 5224/10178 [00:03<00:03, 1326.61 examples/s]Map:  53%|█████▎    | 5368/10178 [00:03<00:03, 1350.77 examples/s]Map:  54%|█████▍    | 5528/10178 [00:04<00:03, 1378.90 examples/s]Map:  56%|█████▌    | 5672/10178 [00:04<00:03, 1384.16 examples/s]Map:  57%|█████▋    | 5816/10178 [00:04<00:03, 1392.83 examples/s]Map:  59%|█████▊    | 5960/10178 [00:04<00:03, 1398.61 examples/s]Map:  60%|█████▉    | 6104/10178 [00:04<00:02, 1402.66 examples/s]Map:  61%|██████▏   | 6248/10178 [00:04<00:02, 1395.89 examples/s]Map:  63%|██████▎   | 6392/10178 [00:04<00:02, 1400.32 examples/s]Map:  64%|██████▍   | 6536/10178 [00:04<00:02, 1398.24 examples/s]Map:  66%|██████▌   | 6680/10178 [00:04<00:02, 1389.33 examples/s]Map:  67%|██████▋   | 6824/10178 [00:04<00:02, 1387.53 examples/s]Map:  68%|██████▊   | 6968/10178 [00:05<00:02, 1391.82 examples/s]Map:  70%|██████▉   | 7112/10178 [00:05<00:02, 1402.69 examples/s]Map:  71%|███████▏  | 7264/10178 [00:05<00:02, 1403.75 examples/s]Map:  73%|███████▎  | 7408/10178 [00:05<00:01, 1402.31 examples/s]Map:  74%|███████▍  | 7552/10178 [00:05<00:01, 1407.09 examples/s]Map:  76%|███████▌  | 7696/10178 [00:05<00:01, 1406.98 examples/s]Map:  77%|███████▋  | 7840/10178 [00:05<00:01, 1399.16 examples/s]Map:  78%|███████▊  | 7984/10178 [00:05<00:01, 1381.87 examples/s]Map:  80%|███████▉  | 8128/10178 [00:05<00:01, 1393.00 examples/s]Map:  81%|████████▏ | 8272/10178 [00:05<00:01, 1392.55 examples/s]Map:  83%|████████▎ | 8416/10178 [00:06<00:01, 1396.46 examples/s]Map:  84%|████████▍ | 8568/10178 [00:06<00:01, 1409.44 examples/s]Map:  86%|████████▌ | 8720/10178 [00:06<00:01, 1415.45 examples/s]Map:  87%|████████▋ | 8864/10178 [00:06<00:00, 1417.16 examples/s]Map:  89%|████████▊ | 9008/10178 [00:06<00:00, 1407.63 examples/s]Map:  91%|█████████ | 9216/10178 [00:06<00:00, 1376.59 examples/s]Map:  92%|█████████▏| 9368/10178 [00:06<00:00, 1383.70 examples/s]Map:  93%|█████████▎| 9512/10178 [00:06<00:00, 1380.90 examples/s]Map:  95%|█████████▍| 9656/10178 [00:06<00:00, 1384.77 examples/s]Map:  96%|█████████▋| 9800/10178 [00:07<00:00, 1383.79 examples/s]Map:  98%|█████████▊| 9944/10178 [00:07<00:00, 1394.28 examples/s]Map: 100%|█████████▉| 10136/10178 [00:07<00:00, 1260.07 examples/s]Map: 100%|██████████| 10178/10178 [00:07<00:00, 1372.80 examples/s]
-Map:   0%|          | 0/1273 [00:00<?, ? examples/s]Map:  11%|█▏        | 144/1273 [00:00<00:00, 1382.09 examples/s]Map:  23%|██▎       | 288/1273 [00:00<00:00, 1392.71 examples/s]Map:  34%|███▍      | 432/1273 [00:00<00:00, 1388.22 examples/s]Map:  50%|█████     | 640/1273 [00:00<00:00, 1372.12 examples/s]Map:  62%|██████▏   | 784/1273 [00:00<00:00, 1380.73 examples/s]Map:  74%|███████▎  | 936/1273 [00:00<00:00, 1383.59 examples/s]Map:  85%|████████▌ | 1088/1273 [00:00<00:00, 1402.78 examples/s]Map:  97%|█████████▋| 1232/1273 [00:00<00:00, 1387.67 examples/s]Map: 100%|██████████| 1273/1273 [00:00<00:00, 1376.73 examples/s]
-huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
-To disable this warning, you can either:
-	- Avoid using `tokenizers` before the fork if possible
-	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
-huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
-To disable this warning, you can either:
-	- Avoid using `tokenizers` before the fork if possible
-	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-  0%|          | 0/3819 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/src/train_lora.py", line 126, in <module>
-    main()
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/src/train_lora.py", line 118, in main
-    trainer.train()
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/trainer.py", line 2325, in train
-    return inner_training_loop(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/trainer.py", line 2674, in _inner_training_loop
-    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/trainer.py", line 4020, in training_step
-    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/trainer.py", line 4110, in compute_loss
-    outputs = model(**inputs)
-              ^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/accelerate/utils/operations.py", line 819, in forward
-    return model_forward(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/accelerate/utils/operations.py", line 807, in __call__
-    return convert_to_fp32(self.model_forward(*args, **kwargs))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/peft/peft_model.py", line 1923, in forward
-    return self.base_model(
-           ^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 308, in forward
-    return self.model.forward(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 918, in wrapper
-    output = func(self, *args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
-    outputs: BaseModelOutputWithPast = self.model(
-                                       ^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 1072, in wrapper
-    outputs = func(self, *args, **kwargs)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
-    hidden_states = decoder_layer(
-                    ^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/modeling_layers.py", line 94, in __call__
-    return super().__call__(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 309, in forward
-    hidden_states = self.mlp(hidden_states)
-                    ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 155, in forward
-    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety/venv/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 134, in forward
-    return F.linear(input, self.weight, self.bias)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 22.00 MiB. GPU 0 has a total capacity of 10.75 GiB of which 21.56 MiB is free. Including non-PyTorch memory, this process has 10.72 GiB memory in use. Of the allocated memory 10.46 GiB is allocated by PyTorch, and 74.83 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-  0%|          | 0/3819 [00:01<?, ?it/s]
