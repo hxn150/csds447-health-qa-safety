@@ -73,7 +73,7 @@ python3 src/run_bench.py \
   --judge_model Qwen/Qwen3-0.6B
 
 echo "[INFO] Running evaluation over all outputs..."
-python3 src/evaluate.py --outputs outputs --dest outputs/metrics_qwen.csv
-python3 src/evaluate_judge.py --outputs outputs --dest outputs/metrics_qwen_judge.csv
+python3 src/evaluate.py --outputs outputs --dest outputs/metrics.csv
+python3 src/evaluate_judge.py --outputs outputs --dest outputs/metrics_judge.csv
 
 echo "[INFO] Job completed. Metrics written to outputs/metrics_qwen.csv"
