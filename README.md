@@ -50,7 +50,7 @@ python3 src/evaluate.py --outputs outputs --dest outputs/metrics_qwen.csv
 
 ### Fine-tuning with LoRA
 Prepare data: python src/prepare_instruct_data.py
-Train: python src/train_lora.py
+Train: python src/train_lora.py --model model_name --dataset dataset_name
 
 ## Models
 

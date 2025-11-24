@@ -1,14 +1,11 @@
 import os
 import json
+import argparse
 from pathlib import Path
 from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, Trainer, DataCollatorForLanguageModeling
 from peft import LoraConfig, get_peft_model
 
-BASE_MODEL = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-DATA_PATH = "data/instruct/medqa_train.jsonl"
-VAL_PATH = "data/instruct/medqa_test.jsonl"
-OUTPUT_DIR = "checkpoints/lora-tinyllama"
 BATCH_SIZE = 8
 EPOCHS = 3
 LR = 2e-5
@@ -52,11 +49,20 @@ def tokenize_fn(examples, tokenizer):
     return tokenized_full
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", type=str, choices=["medqa", "pubmedqa"], default="medqa")
+    parser.add_argument("--model", type=str, default="TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+    args = parser.parse_args()
+
+    data_path = f"data/instruct/{args.dataset}_train.jsonl"
+    val_path = f"data/instruct/{args.dataset}_test.jsonl"
+    output_dir = f"checkpoints/lora-{args.model}-{args.dataset}"
+
     print("[+] Loading tokenizer and model...")
-    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, use_fast=True)
+    tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)
     tokenizer.pad_token = tokenizer.eos_token
     
-    model = AutoModelForCausalLM.from_pretrained(BASE_MODEL)
+    model = AutoModelForCausalLM.from_pretrained(args.model)
 
     print("[+] Setting up LoRA...")
     lora_config = LoraConfig(
@@ -71,8 +77,8 @@ def main():
     model.print_trainable_parameters()
 
     print("[+] Loading datasets...")
-    train_data = load_jsonl(DATA_PATH)
-    val_data = load_jsonl(VAL_PATH)
+    train_data = load_jsonl(data_path)
+    val_data = load_jsonl(val_path)
     train_ds = Dataset.from_list(train_data)
     val_ds = Dataset.from_list(val_data)
     
@@ -93,7 +99,7 @@ def main():
     data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False)
 
     training_args = TrainingArguments(
-        output_dir=OUTPUT_DIR,
+        output_dir=output_dir,
         per_device_train_batch_size=BATCH_SIZE,
         per_device_eval_batch_size=BATCH_SIZE,
         num_train_epochs=EPOCHS,
@@ -118,9 +124,9 @@ def main():
     trainer.train()
     
     print("[+] Saving model...")
-    model.save_pretrained(OUTPUT_DIR)
-    tokenizer.save_pretrained(OUTPUT_DIR)
-    print(f"[✓] LoRA adapter and tokenizer saved to {OUTPUT_DIR}")
+    model.save_pretrained(output_dir)
+    tokenizer.save_pretrained(output_dir)
+    print(f"[✓] LoRA adapter and tokenizer saved to {output_dir}")
 
 if __name__ == "__main__":
     main()
