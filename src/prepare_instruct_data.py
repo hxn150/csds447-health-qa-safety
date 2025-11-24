@@ -36,10 +36,10 @@ def main():
             f.write(json.dumps(ex, ensure_ascii=False) + "\n")
     pubmedqa_rows = list(pubmedqa_to_instruct("train"))
     with open(out_dir / "pubmedqa_train.jsonl", "w", encoding="utf-8") as f:
-        for ex in pubmedqa_rows[:800]:  
+        for ex in pubmedqa_rows[:80]:  
             f.write(json.dumps(ex, ensure_ascii=False) + "\n")
     with open(out_dir / "pubmedqa_test.jsonl", "w", encoding="utf-8") as f:
-        for ex in pubmedqa_rows[800:]:
+        for ex in pubmedqa_rows[80:100]:
             f.write(json.dumps(ex, ensure_ascii=False) + "\n")
     print("Instruction datasets written to", out_dir)
 
