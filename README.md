@@ -48,6 +48,10 @@ Summarise accuracy and safety rates (including the judge verdicts) with:
 python3 src/evaluate.py --outputs outputs --dest outputs/metrics_qwen.csv
 ```
 
+### Fine-tuning with LoRA
+Prepare data: python src/prepare_instruct_data.py
+Train: python src/train_lora.py
+
 ## Models
 
 - [TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)

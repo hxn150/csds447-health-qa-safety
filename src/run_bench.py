@@ -48,7 +48,7 @@ def _extract_pubmedqa_label(text: str) -> str:
 
 
 def generate_model_outputs(model_name: str, qa_list, dataset_name: str = "medqa"):
-    model = get_model(model_name)
+    model = get_model(model_name, lora_path="checkpoints/lora-tinyllama")
     output = []
     for question, ground_truth in tqdm(qa_list, desc=f"{model_name}"):
         if dataset_name == "pubmedqa":
