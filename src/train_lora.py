@@ -100,8 +100,8 @@ def main():
 
     training_args = TrainingArguments(
         output_dir=output_dir,
-        per_device_train_batch_size=BATCH_SIZE,
-        per_device_eval_batch_size=BATCH_SIZE,
+        per_device_train_batch_size=1,
+        per_device_eval_batch_size=1,
         num_train_epochs=EPOCHS,
         learning_rate=LR,
         fp16=True,

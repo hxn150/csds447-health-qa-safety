@@ -11,7 +11,7 @@
 set -euo pipefail
 
 export TOKENIZERS_PARALLELISM=false
-export PYTORCH_ALLOC_CONF=expandable_segments:True,max_split_size_mb:64
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:64
 
 cd "$SLURM_SUBMIT_DIR"
 
@@ -24,27 +24,27 @@ python src/prepare_instruct_data.py
 
 # Step 2: Train LoRA model
 # TinyLlama on MedQA
-echo "[$(date)] Step 2a: Training LoRA (TinyLlama-1.1B-Chat-v1.0 on medqa)..."
-python src/train_lora.py --model TinyLlama-1.1B-Chat-v1.0 --dataset medqa
-echo "[$(date)] Step 2a completed."
-echo
+# echo "[$(date)] Step 2a: Training LoRA (TinyLlama-1.1B-Chat-v1.0 on medqa)..."
+# python src/train_lora.py --model TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset medqa
+# echo "[$(date)] Step 2a completed."
+# echo
 
 # TinyLlama on PubMedQA
-echo "[$(date)] Step 2b: Training LoRA (TinyLlama-1.1B-Chat-v1.0 on pubmedqa)..."
-python src/train_lora.py --model TinyLlama-1.1B-Chat-v1.0 --dataset pubmedqa
-echo "[$(date)] Step 2b completed."
+# echo "[$(date)] Step 2b: Training LoRA (TinyLlama-1.1B-Chat-v1.0 on pubmedqa)..."
+# python src/train_lora.py --model TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset pubmedqa
+# echo "[$(date)] Step 2b completed."
+# echo
+
+# BioGPT-Large on MedQA
+echo "[$(date)] Step 2c: Training LoRA (microsoft/BioGPT-Large on medqa)..."
+python src/train_lora.py --model microsoft/BioGPT-Large --dataset medqa
+echo "[$(date)] Step 2c completed."
 echo
 
-# # BioGPT-Large on MedQA
-# echo "[$(date)] Step 2c: Training LoRA (microsoft/BioGPT-Large on medqa)..."
-# python src/train_lora.py --model microsoft/BioGPT-Large --dataset medqa
-# echo "[$(date)] Step 2c completed."
-# echo
-
-# # BioGPT-Large on PubMedQA
-# echo "[$(date)] Step 2d: Training LoRA (microsoft/BioGPT-Large on pubmedqa)..."
-# python src/train_lora.py --model microsoft/BioGPT-Large --dataset pubmedqa
-# echo "[$(date)] Step 2d completed."
-# echo
+# BioGPT-Large on PubMedQA
+echo "[$(date)] Step 2d: Training LoRA (microsoft/BioGPT-Large on pubmedqa)..."
+python src/train_lora.py --model microsoft/BioGPT-Large --dataset pubmedqa
+echo "[$(date)] Step 2d completed."
+echo
 
 echo "[$(date)] healthqa-bench job finished successfully."
