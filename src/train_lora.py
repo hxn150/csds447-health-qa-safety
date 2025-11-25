@@ -56,7 +56,14 @@ def main():
 
     data_path = f"data/instruct/{args.dataset}_train.jsonl"
     val_path = f"data/instruct/{args.dataset}_test.jsonl"
-    output_dir = f"checkpoints/lora-{args.model}-{args.dataset}"
+    
+    output_dir = ""
+    if args.model == "TinyLlama/TinyLlama-1.1B-Chat-v1.0":
+        output_dir = f"checkpoints/lora-tinyllama-{args.dataset}"
+    elif args.model == "microsoft/BioGPT-Large":
+        output_dir = f"checkpoints/lora-microsoftbiogpt-{args.dataset}"
+    else:
+        raise ValueError(f"Unsupported model for LoRA training: {args.model}")
 
     print("[+] Loading tokenizer and model...")
     tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)

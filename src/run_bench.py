@@ -48,14 +48,19 @@ def _extract_pubmedqa_label(text: str) -> str:
 
 
 def generate_model_outputs(model_name: str, qa_list, dataset_name: str = "medqa"):
-    model = get_model(model_name, lora_path=f"checkpoints/lora-{model_name}-{dataset_name}")
+    if model_name == "TinyLlama/TinyLlama-1.1B-Chat-v1.0":
+        model = get_model(model_name, lora_path=f"checkpoints/lora-tinyllama-{dataset_name}")
+    elif model_name == "microsoft/BioGPT-Large":
+        model = get_model(model_name, lora_path=f"checkpoints/lora-microsoftbiogpt-{dataset_name}")
+    else:
+        model = get_model(model_name)
     output = []
     for question, ground_truth in tqdm(qa_list, desc=f"{model_name}"):
         if dataset_name == "pubmedqa":
             prompt = _pubmedqa_prompt(question)
         else:
             prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
-        gen = model.generate(prompt, max_new_tokens=128)
+        gen = model.generate(prompt, max_new_tokens=128, temperature=0.0)
         print("Full generated text:", gen)
         answer = gen.split("Answer:")[-1].strip() if "Answer:" in gen else gen.strip()
         print("Extracted answer:", answer)
