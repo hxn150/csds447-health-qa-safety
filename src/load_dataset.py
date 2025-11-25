@@ -81,7 +81,7 @@ def main():
     """Main execution"""
     
     # Load
-    df = load_dataset('../outputs/pred_medqa_TinyLlama_TinyLlama-1.1B-Chat-v1.0.csv')
+    df = load_dataset('../outputs/medqa_mcq_synthetic_safety.csv')
     
     if df is None:
         return
