@@ -83,4 +83,10 @@ If you use this benchmark, please cite the following papers:
   pages={2567--2577},
   year={2019}
 }
+@article{han2024medsafetybench,
+  title={MedSafetyBench: Evaluating and Improving the Medical Safety of Large Language Models},
+  author={Han, Tessa and Kumar, Aounon and Agarwal, Chirag and Lakkaraju, Himabindu},
+  journal={NeurIPS},
+  year={2024}
+}
 ```
