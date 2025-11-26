@@ -16,7 +16,7 @@ def get_medqa_data(split="test", limit=None):
     dataset = load_dataset("GBaker/MedQA-USMLE-4-options", cache_dir="data/cache")[split]
     for index, row in enumerate(dataset):
         if limit and index >= limit: break
-        yield row["question"], row.get("answer","")
+        yield row["question"] + " " + str(row["options"]), row.get("answer","")
 
 def get_pubmedqa_data(split="train", limit=None):
     dataset = load_dataset("qiaojin/PubMedQA", "pqa_labeled", cache_dir="data/cache")[split]
