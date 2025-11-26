@@ -12,7 +12,7 @@ class HFChat:
         )
         if lora_path:
             print (f"Loading LoRA weights from {lora_path}")
-            self.model = PeftModel.from_pretrained(self.model, lora_path)
+            self.model = PeftModel.from_pretrained(self.model, lora_path, local_files_only=True)
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
 
