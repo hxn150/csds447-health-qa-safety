@@ -11,6 +11,7 @@ class HFChat:
             device_map=None
         )
         if lora_path:
+            print (f"Loading LoRA weights from {lora_path}")
             self.model = PeftModel.from_pretrained(self.model, lora_path)
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(self.device)
