@@ -1,144 +1,114 @@
 #!/usr/bin/env python
+"""
+Generate a safety QA dataset with two columns: question,label.
+
+- SAFE questions come from PubMedQA (qiaojin/PubMedQA, pqa_labeled).
+- UNSAFE questions come from a local harmful prompts file (e.g. src/harmful.txt).
+"""
+
 import argparse
 import csv
 from pathlib import Path
+from typing import Iterable, Optional
 
 from datasets import load_dataset
 
-HEADER = [
-    "model",
-    "question",
-    "prediction",
-    "ground_truth",
-    "verdict",
-    "reason",
-    "tags",
-    "_raw_judge",
-]
 
-LETTERS = ["A", "B", "C", "D"]
-
-
-def _get_options(example):
-    """
-    Try to recover the four answer options from a MedQA example.
-
-    Different MedQA variants use slightly different field names, so we
-    probe several common patterns.
-    """
-    # 1) Direct list field
-    options = example.get("options")
-    if isinstance(options, (list, tuple)) and len(options) >= 4:
-        return list(options)[:4]
-    # 1b) Dict mapping letters -> option text (MedQA-USMLE-4-options format)
-    if isinstance(options, dict):
-        return [options.get(letter, "") for letter in LETTERS]
-
-    # 2) Common per-option field name patterns
-    candidate_key_sets = [
-        ["option_A", "option_B", "option_C", "option_D"],
-        ["opa", "opb", "opc", "opd"],
-        ["A", "B", "C", "D"],
-        ["choice_A", "choice_B", "choice_C", "choice_D"],
-    ]
-
-    for keys in candidate_key_sets:
-        vals = [example.get(k, "") for k in keys]
-        # If at least one option has non-empty text, assume this pattern is correct
-        if any(v not in ("", None) for v in vals):
-            return vals
-
-    # Fallback: empty strings (so at least the script doesn't crash)
-    return ["", "", "", ""]
+def iter_pubmedqa_questions(
+    split: str,
+    limit: Optional[int],
+    cache_dir: Path,
+) -> Iterable[str]:
+    """Yield cleaned PubMedQA question strings."""
+    dataset = load_dataset(
+        "qiaojin/PubMedQA",
+        "pqa_labeled",
+        split=split,
+        cache_dir=str(cache_dir),
+    )
+    for index, row in enumerate(dataset):
+        if limit is not None and index >= limit:
+            break
+        question = row.get("question", "")
+        question = str(question).strip()
+        if not question:
+            continue
+        yield question
 
 
-def build_question_text(example) -> str:
-    """Return only the question stem (no options)."""
-    stem = example.get("question") or example.get("problem") or ""
-    return stem
+def iter_harmful_questions(path: Path) -> Iterable[str]:
+    """Yield harmful questions/prompts from a text file, one per non-empty line."""
+    with path.open("r", encoding="utf-8") as f:
+        i = 0
+        for line in f:
+            text = line.strip()
+            if not text:
+                continue
+            # Remove known special tokens if present
+            text = text.replace("<|eot_id|>", "").strip()
+            # Strip simple surrounding quotes
+            if (text.startswith('"') and text.endswith('"')) or (
+                text.startswith("'") and text.endswith("'")
+            ):
+                text = text[1:-1].strip()
+            if text:
+                yield text
+            i+=1
+            if i > 1000:
+                break
+
+def build_dataset(
+    output_path: Path,
+    pubmedqa_split: str = "train",
+    max_safe: Optional[int] = None,
+    cache_dir: Path = Path("data/cache"),
+    harmful_path: Path = Path("src/harmful.txt"),
+) -> None:
+    """Write a CSV with columns question,label using SAFE and UNSAFE sources."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with output_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["question", "label"])
+
+        # SAFE examples from PubMedQA
+        for question in iter_pubmedqa_questions(
+            split=pubmedqa_split,
+            limit=max_safe,
+            cache_dir=cache_dir,
+        ):
+            writer.writerow([question, "SAFE"])
+
+        # UNSAFE examples from harmful.txt
+        for question in iter_harmful_questions(harmful_path):
+            writer.writerow([question, "UNSAFE"])
 
 
-def get_correct_letter(example):
-    """
-    Extract the correct answer letter (A–D) from a MedQA example.
-
-    MedQA variants may store the answer as:
-    - an index (0–3) in `answer_idx`, or
-    - a letter ('A'–'D') in `answer_idx` / `answer` / `answer_choice`.
-    """
-    answer_idx = example.get("answer_idx")
-    answer_letter = example.get("answer") or example.get("answer_choice")
-
-    # Case 1: answer_idx is a string (either a letter or a digit)
-    if isinstance(answer_idx, str):
-        cleaned = answer_idx.strip().upper()
-        if cleaned in LETTERS:
-            return cleaned
-        if cleaned.isdigit():
-            idx = int(cleaned)
-            if 0 <= idx < len(LETTERS):
-                return LETTERS[idx]
-
-    # Case 2: answer_idx is an integer index
-    if isinstance(answer_idx, int):
-        if 0 <= answer_idx < len(LETTERS):
-            return LETTERS[answer_idx]
-
-    # Case 3: fall back to explicit letter field
-    if isinstance(answer_letter, str):
-        cleaned = answer_letter.strip().upper()
-        if cleaned in LETTERS:
-            return cleaned
-
-    # If we can't determine the correct option, signal to skip
-    return None
-
-
-def get_correct_answer_text(example, options):
-    """
-    Get the correct answer *text* for a MedQA example.
-
-    Prefer the explicit `answer` field; if missing, fall back to
-    using the correct letter to index into the options.
-    """
-    answer = example.get("answer")
-    if isinstance(answer, str) and answer.strip():
-        return answer.strip()
-
-    correct_letter = get_correct_letter(example)
-    if correct_letter is None:
-        return None
-
-    try:
-        idx = LETTERS.index(correct_letter)
-    except ValueError:
-        return None
-
-    if 0 <= idx < len(options):
-        return str(options[idx]).strip()
-
-    return None
-
-
-def main():
-    parser = argparse.ArgumentParser()
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Generate a simple safety dataset with two columns: question,label. "
+            "PubMedQA questions are labeled SAFE and questions from src/harmful.txt "
+            "are labeled UNSAFE."
+        )
+    )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("outputs/medqa_mcq_synthetic_safety.csv"),
-        help="Output CSV path.",
+        default=Path("data/datasets/safety_qa.csv"),
+        help="Output CSV path (default: data/datasets/safety_qa.csv).",
     )
     parser.add_argument(
-        "--num-questions",
-        type=int,
-        default=1000,
-        help="Number of MedQA questions to use (each creates 4 rows).",
-    )
-    parser.add_argument(
-        "--model-name",
+        "--pubmedqa-split",
         type=str,
-        default="synthetic-medqa-mcq",
-        help="Value to put in the `model` column.",
+        default="train",
+        help="PubMedQA split to use (train/validation/test).",
+    )
+    parser.add_argument(
+        "--max-safe",
+        type=int,
+        default=None,
+        help="Optional maximum number of SAFE (PubMedQA) questions to include.",
     )
     parser.add_argument(
         "--cache-dir",
@@ -146,46 +116,26 @@ def main():
         default=Path("data/cache"),
         help="HuggingFace datasets cache directory.",
     )
-    args = parser.parse_args()
-
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-
-    ds = load_dataset(
-        "GBaker/MedQA-USMLE-4-options",
-        split="train",
-        cache_dir=str(args.cache_dir),
+    parser.add_argument(
+        "--harmful-path",
+        type=Path,
+        default=Path("src/harmful.txt"),
+        help="Path to harmful questions file (one per line).",
     )
+    return parser.parse_args()
 
-    if args.num_questions > 0 and args.num_questions < len(ds):
-        ds = ds.select(range(args.num_questions))
 
-    with args.output.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(HEADER)
-
-        for ex in ds:
-            question_text = build_question_text(ex)
-            options = _get_options(ex)
-            correct_text = get_correct_answer_text(ex, options)
-            if correct_text is None:
-                # Skip examples where we can't determine the correct answer text
-                continue
-
-            for opt_text in options:
-                opt_clean = str(opt_text).strip()
-                verdict = "SAFE" if opt_clean == correct_text else "UNSAFE"
-                row = [
-                    args.model_name,  # model
-                    question_text,    # question
-                    opt_clean,        # prediction (answer text)
-                    correct_text,     # ground_truth (correct answer text)
-                    verdict,          # verdict
-                    "",               # reason (empty)
-                    "",               # tags (empty)
-                    "",               # _raw_judge (empty)
-                ]
-                writer.writerow(row)
+def main() -> None:
+    args = parse_args()
+    build_dataset(
+        output_path=args.output,
+        pubmedqa_split=args.pubmedqa_split,
+        max_safe=args.max_safe,
+        cache_dir=args.cache_dir,
+        harmful_path=args.harmful_path,
+    )
 
 
 if __name__ == "__main__":
     main()
+
