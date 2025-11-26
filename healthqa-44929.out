@@ -1,0 +1,5 @@
+[INFO] Starting Health QA safety benchmark job on HPC
+[INFO] Working directory: /mnt/vstor/courses/csds447/kvl16/project/csds447-health-qa-safety
+[WARN] .venv not found; using system Python
+[INFO] Running PubMedQA (train split) benchmarks...
+[INFO] TinyLlama on PubMedQA train
