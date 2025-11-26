@@ -63,6 +63,7 @@ Train: python src/train_lora.py --model model_name --dataset dataset_name
 
 - **MedQA**: [https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options)
 - **PubMedQA**: [https://huggingface.co/datasets/qiaojin/PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA)
+- **Harmful questions**: [https://github.com/AI4LIFE-GROUP/med-safety-bench](https://github.com/AI4LIFE-GROUP/med-safety-bench?brid=N6jqmxCFGHb5DAX1T8lZvg)
 
 ## Citations
 
