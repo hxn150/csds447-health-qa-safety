@@ -1,29 +1,15 @@
-"""
-HELEN'S TASK - STEP 4: Train Safety Classifier
-Simplified version
-"""
-
 import pandas as pd
 import torch
 from pathlib import Path
 from sklearn.metrics import classification_report, confusion_matrix
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification,
-    TrainingArguments,
-    Trainer
-)
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 from torch.utils.data import Dataset
 
-# Label mapping
-LABEL2ID = {"SAFE": 0, "UNSAFE": 1, "REFUSAL": 2}
+LABEL2ID = {"SAFE": 0, "UNSAFE": 1}
 ID2LABEL = {v: k for k, v in LABEL2ID.items()}
 
-
 class SafetyDataset(Dataset):
-    """Dataset for safety classification"""
-    
-    def __init__(self, texts, labels, tokenizer, max_length=128):
+    def __init__(self, texts, labels, tokenizer, max_length=256):
         self.texts = texts
         self.labels = labels
         self.tokenizer = tokenizer
@@ -47,22 +33,14 @@ class SafetyDataset(Dataset):
             "labels": torch.tensor(self.labels[idx], dtype=torch.long)
         }
 
-
 def load_data():
-    """Load train/val/test datasets"""
-    
     data_dir = Path('data/safety_classifier')
-    
     train_df = pd.read_csv(data_dir / 'train.csv')
     val_df = pd.read_csv(data_dir / 'val.csv')
     test_df = pd.read_csv(data_dir / 'test.csv')
-    
     return train_df, val_df, test_df
 
-
-def evaluate_model(model, test_dataset, tokenizer):
-    """Evaluate model on test set"""
-    
+def evaluate_model(model, test_dataset):
     model.eval()
     predictions = []
     true_labels = []
@@ -81,37 +59,29 @@ def evaluate_model(model, test_dataset, tokenizer):
     
     return predictions, true_labels
 
-
 def main():
-    """Train safety classifier"""
-    
-    print("Loading data...")
     train_df, val_df, test_df = load_data()
     
     print(f"Train: {len(train_df)}, Val: {len(val_df)}, Test: {len(test_df)}")
+    print(train_df['label'].value_counts().to_dict())
     
-    # Setup model
     model_name = "distilbert-base-uncased"
-    print(f"\nLoading model: {model_name}")
-    
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name,
-        num_labels=3,
+        num_labels=2,
         id2label=ID2LABEL,
         label2id=LABEL2ID
     )
     
-    # Create datasets
     train_labels = [LABEL2ID[l] for l in train_df['label']]
     val_labels = [LABEL2ID[l] for l in val_df['label']]
     test_labels = [LABEL2ID[l] for l in test_df['label']]
     
-    train_dataset = SafetyDataset(train_df['question'].tolist(), train_labels, tokenizer)
-    val_dataset = SafetyDataset(val_df['question'].tolist(), val_labels, tokenizer)
-    test_dataset = SafetyDataset(test_df['question'].tolist(), test_labels, tokenizer)
+    train_dataset = SafetyDataset(train_df['text'].tolist(), train_labels, tokenizer)
+    val_dataset = SafetyDataset(val_df['text'].tolist(), val_labels, tokenizer)
+    test_dataset = SafetyDataset(test_df['text'].tolist(), test_labels, tokenizer)
     
-    # Training arguments
     output_dir = Path('models/safety_classifier')
     output_dir.mkdir(parents=True, exist_ok=True)
     
@@ -129,7 +99,6 @@ def main():
         metric_for_best_model="eval_loss",
     )
     
-    # Train
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -140,29 +109,22 @@ def main():
     print("\nTraining...")
     trainer.train()
     
-    # Evaluate
-    print("\nEvaluating on test set...")
-    predictions, true_labels = evaluate_model(model, test_dataset, tokenizer)
+    print("\nEvaluating...")
+    predictions, true_labels = evaluate_model(model, test_dataset)
     
-    # Print results
     print("\nClassification Report:")
-    print(classification_report(
-        true_labels,
-        predictions,
-        target_names=['SAFE', 'UNSAFE', 'REFUSAL']
-    ))
+    print(classification_report(true_labels, predictions, target_names=['SAFE', 'UNSAFE']))
     
     print("\nConfusion Matrix:")
     cm = confusion_matrix(true_labels, predictions)
-    print("           SAFE  UNSAFE  REFUSAL")
-    for i, label in enumerate(['SAFE', 'UNSAFE', 'REFUSAL']):
-        print(f"{label:8}  {cm[i][0]:4}  {cm[i][1]:6}  {cm[i][2]:7}")
+    print("        SAFE  UNSAFE")
+    for i, label in enumerate(['SAFE', 'UNSAFE']):
+        print(f"{label:6}  {cm[i][0]:4}  {cm[i][1]:6}")
     
-    # Save final model
     model.save_pretrained(output_dir / 'final')
     tokenizer.save_pretrained(output_dir / 'final')
     
-    print(f"\nModel saved to: {output_dir / 'final'}")
+    print(f"\nSaved to: {output_dir / 'final'}")
 
 if __name__ == "__main__":
     main()
