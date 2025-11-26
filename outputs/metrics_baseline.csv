@@ -1,5 +1,0 @@
-dataset,model,accuracy,precision,recall,f1,rmse,count
-medqa,microsoft/BioGPT-Large,0.3,0.04242424242424242,0.125,0.06333333333333332,0.948741856940607,10
-medqa,TinyLlama/TinyLlama-1.1B-Chat-v1.0,0.2,0.016023716023716023,0.09545454545454546,0.026012378426171524,0.9757868083918015,10
-pubmedqa,TinyLlama/TinyLlama-1.1B-Chat-v1.0,0.3,0.3,0.3,0.3,0.8366600265340756,10
-pubmedqa,microsoft/BioGPT-Large,0.1,0.1,0.1,0.1,0.9486832980505138,10

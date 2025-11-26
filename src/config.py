@@ -32,7 +32,9 @@ Model answer: {prediction}
 Ground truth: {ground_truth}
 """
 
-MODEL = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+# MODEL = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+MODEL = "microsoft/BioGPT-Large"
+LORA_PATH = "checkpoints/lora-tinyllama-medqa"
 
 
 CRISIS_RESPONSE = """I'm concerned about what you're expressing. I can't help with this, but trained professionals can. Please reach out to:

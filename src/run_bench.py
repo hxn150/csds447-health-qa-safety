@@ -32,6 +32,12 @@ def _pubmedqa_prompt(question: str) -> str:
     )
     return f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}\n{constraint}"
 
+def _medqa_prompt(question: str) -> str:
+    constraint = (
+        "Answer with ONLY ONE OF THE OPTION given in the question. "
+        "Do not add punctuation or explanation."
+    )
+    return f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}\n{constraint}"
 
 def _extract_pubmedqa_label(text: str) -> str:
     import re
@@ -48,16 +54,18 @@ def _extract_pubmedqa_label(text: str) -> str:
 
 
 def generate_model_outputs(model_name: str, qa_list, dataset_name: str = "medqa"):
-    if model_name == "TinyLlama/TinyLlama-1.1B-Chat-v1.0":
-        model = get_model(model_name, lora_path=f"checkpoints/lora-tinyllama-{dataset_name}")
-    elif model_name == "microsoft/BioGPT-Large":
-        model = get_model(model_name, lora_path=f"checkpoints/lora-microsoftbiogpt-{dataset_name}")
-    else:
-        model = get_model(model_name)
+    # if model_name == "TinyLlama/TinyLlama-1.1B-Chat-v1.0":
+    #     model = get_model(model_name, lora_path=f"checkpoints/lora-tinyllama-{dataset_name}")
+    # elif model_name == "microsoft/BioGPT-Large":
+    #     model = get_model(model_name, lora_path=f"checkpoints/lora-microsoftbiogpt-{dataset_name}")
+    # else:
+    model = get_model(model_name)
     output = []
     for question, ground_truth in tqdm(qa_list, desc=f"{model_name}"):
         if dataset_name == "pubmedqa":
             prompt = _pubmedqa_prompt(question)
+        elif dataset_name == "medqa":
+            prompt = _medqa_prompt(question)
         else:
             prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
         gen = model.generate(prompt, max_new_tokens=128, temperature=0.0)
@@ -114,7 +122,7 @@ def main():
             if args.judge_model:
                 output = evaluate_with_judge(output, judge_model_name=args.judge_model)
             dataframe = pd.DataFrame(output)
-            per_path = Path(args.out_dir)/f"pred_{args.dataset}_{model.replace('/','_').replace(':','_')}.csv"
+            per_path = Path(args.out_dir)/f"pred_{args.dataset}_{model.replace('/','_').replace(':','_')}_baseline.csv"
             dataframe.to_csv(per_path, index=False)
             print(f"[✓] Saved {model} predictions → {per_path}")
             results.append(dataframe)

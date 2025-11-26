@@ -290,9 +290,10 @@ def ask():
         if model is None:
             try:
                 from registry import get_model
-                from config import MODEL
+                from config import MODEL, LORA_PATH
                 print("Loading model...")
-                model = get_model(MODEL)
+                print(MODEL)
+                model = get_model(MODEL, LORA_PATH)
                 print("Model loaded successfully")
             except Exception as e:
                 print(f"Could not load model: {e}")

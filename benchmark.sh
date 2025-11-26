@@ -29,9 +29,9 @@ fi
 
 export TOKENIZERS_PARALLELISM=false
 
-# echo "[INFO] Running MedQA (USMLE) benchmarks..."
+echo "[INFO] Running MedQA (USMLE) benchmarks..."
 
-# echo "[INFO] TinyLlama on MedQA"
+echo "[INFO] TinyLlama on MedQA"
 
 # python3 src/run_bench.py \
 #   --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
