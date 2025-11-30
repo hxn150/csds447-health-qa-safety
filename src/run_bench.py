@@ -16,7 +16,8 @@ def get_medqa_data(split="test", limit=None):
     dataset = load_dataset("GBaker/MedQA-USMLE-4-options", cache_dir="data/cache")[split]
     for index, row in enumerate(dataset):
         if limit and index >= limit: break
-        yield row["question"] + " " + str(row["options"]), row.get("answer","")
+        options = "\n".join([f"{k}. {v}" for k, v in row["options"].items()])
+        yield row["question"] + " Choose ONE option from the following options:" + "\n" + options, row.get("answer","")
 
 def get_pubmedqa_data(split="train", limit=None):
     dataset = load_dataset("qiaojin/PubMedQA", "pqa_labeled", cache_dir="data/cache")[split]
@@ -34,10 +35,20 @@ def _pubmedqa_prompt(question: str) -> str:
 
 def _medqa_prompt(question: str) -> str:
     constraint = (
-        "Answer with ONLY ONE OF THE OPTION given in the question. "
-        "Do not add punctuation or explanation."
+        "You MUST choose exactly ONE answer choice."
+        "You MUST output EXACTLY the following JSON format:"
+        "Example: "
+        "{\"answer\": \"A\"}"
+        "RULES:"
+        "- The answer must be only a single letter"
+        "- DO NOT output explanations."
+        "- DO NOT output the full answer choices."
+        "- DO NOT output multiple letters."
+        "- DO NOT output any text outside the JSON."
+        "If you violate any of these rules, your answer is wrong."
     )
-    return f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}\n{constraint}"
+    return f"{SYSTEM_PROMPT}\n{constraint}\n{USER_PROMPT.format(question=question)}"
+
 
 def _extract_pubmedqa_label(text: str) -> str:
     import re
@@ -54,20 +65,21 @@ def _extract_pubmedqa_label(text: str) -> str:
 
 
 def generate_model_outputs(model_name: str, qa_list, dataset_name: str = "medqa"):
-    # if model_name == "TinyLlama/TinyLlama-1.1B-Chat-v1.0":
-    #     model = get_model(model_name, lora_path=f"checkpoints/lora-tinyllama-{dataset_name}")
-    # elif model_name == "microsoft/BioGPT-Large":
-    #     model = get_model(model_name, lora_path=f"checkpoints/lora-microsoftbiogpt-{dataset_name}")
-    # else:
-    model = get_model(model_name)
+    if model_name == "TinyLlama/TinyLlama-1.1B-Chat-v1.0":
+        model = get_model(model_name, lora_path=f"checkpoints/lora-tinyllama-{dataset_name}")
+    elif model_name == "microsoft/BioGPT-Large":
+        model = get_model(model_name, lora_path=f"checkpoints/lora-microsoftbiogpt-{dataset_name}")
+    else:
+        model = get_model(model_name)
     output = []
     for question, ground_truth in tqdm(qa_list, desc=f"{model_name}"):
         if dataset_name == "pubmedqa":
             prompt = _pubmedqa_prompt(question)
         elif dataset_name == "medqa":
             prompt = _medqa_prompt(question)
+            print("Generated prompt:", prompt)
         else:
-            prompt = f"{SYSTEM_PROMPT}\n\n{USER_PROMPT.format(question=question)}"
+            prompt = _medqa_prompt(question)
         gen = model.generate(prompt, max_new_tokens=128, temperature=0.0)
         print("Full generated text:", gen)
         answer = gen.split("Answer:")[-1].strip() if "Answer:" in gen else gen.strip()
@@ -122,7 +134,7 @@ def main():
             if args.judge_model:
                 output = evaluate_with_judge(output, judge_model_name=args.judge_model)
             dataframe = pd.DataFrame(output)
-            per_path = Path(args.out_dir)/f"pred_{args.dataset}_{model.replace('/','_').replace(':','_')}_baseline.csv"
+            per_path = Path(args.out_dir)/f"pred_{args.dataset}_{model.replace('/','_').replace(':','_')}.csv"
             dataframe.to_csv(per_path, index=False)
             print(f"[✓] Saved {model} predictions → {per_path}")
             results.append(dataframe)
