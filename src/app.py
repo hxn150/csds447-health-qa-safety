@@ -258,27 +258,27 @@ def ask():
     
     try:
         data = request.json
-        question = data.get('question', '')
+        question = data.get('question', '').strip()
         
+        # Load safety gate
         if safety_gate is None:
             try:
                 from safety_gate import SafetyGate
                 safety_gate = SafetyGate()
-                print("Safety gate loaded successfully")
             except Exception as e:
                 print(f"Could not load safety gate: {e}")
-        
+
+        # Safety check
         if safety_gate is not None:
             try:
                 safety_result = safety_gate.check_safety(question)
-                print(f"Question: {question[:50]}... -> {safety_result['label']} ({safety_result['confidence']:.2f})")
-                
                 if not safety_result['allowed']:
                     from config import CRISIS_RESPONSE
                     return jsonify({'answer': CRISIS_RESPONSE, 'type': 'crisis'})
             except Exception as e:
                 print(f"Safety check error: {e}")
         
+        # Hard emergency keyword checks
         if check_harmful_content(question):
             from config import CRISIS_RESPONSE
             return jsonify({'answer': CRISIS_RESPONSE, 'type': 'crisis'})
@@ -287,32 +287,54 @@ def ask():
             from config import EMERGENCY_RESPONSE
             return jsonify({'answer': EMERGENCY_RESPONSE, 'type': 'emergency'})
         
+        # Load model
         if model is None:
             try:
                 from registry import get_model
                 from config import MODEL, LORA_PATH
-                print("Loading model...")
-                print(MODEL)
                 model = get_model(MODEL, LORA_PATH)
-                print("Model loaded successfully")
             except Exception as e:
-                print(f"Could not load model: {e}")
                 return jsonify({'answer': 'Error: Model could not be loaded', 'type': 'error'})
         
-        from config import SYSTEM_PROMPT
-        prompt = f"{SYSTEM_PROMPT}\n\nQuestion: {question}\nAnswer:"
-        
+        # NEW & CLEAN SYSTEM PROMPT
+        CLEAN_SYSTEM_PROMPT = """
+        You are Dr. Darla, a concise and friendly medical assistant.
+        You answer questions using clear, simple language.
+
+        RULES:
+        - Limit answers to 3–6 sentences unless asked otherwise.
+        - Never repeat phrases or sentence structures.
+        - Never generate exam-style questions.
+        - Never create "Which of the following" content.
+        - Provide practical patient-friendly explanations only.
+        - Lists are allowed but keep them short and non-repetitive.
+        """
+
+        # Final prompt
+        prompt = (
+            CLEAN_SYSTEM_PROMPT +
+            f"\nUser question: {question}\n\n" +
+            "Your answer (concise, no repetition):"
+        )
+
+        # Generate
         with torch.no_grad():
-            response = model.generate(prompt, max_new_tokens=512)
-        
-        if "Answer:" in response:
-            answer = response.split("Answer:", 1)[1].strip()
-        else:
-            answer = response.strip()
-        
+            response = model.generate(
+                prompt,
+                max_new_tokens=180,      # forces concise output
+                temperature=0.2,          # reduces rambling
+                top_p=0.9,
+                repetition_penalty=1.4    # STRONG anti-repetition control
+            )
+
+        answer = response.strip()
+
+        # Clean any leftovers
         if "Question:" in answer:
             answer = answer.split("Question:")[0].strip()
-        
+        if "Answer:" in answer:
+            answer = answer.split("Answer:")[-1].strip()
+
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
         
@@ -325,5 +347,4 @@ def ask():
         return jsonify({'answer': f'Error: {str(e)}', 'type': 'error'})
 
 if __name__ == '__main__':
-    print("Starting Flask app on http://localhost:5000")
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5001)
