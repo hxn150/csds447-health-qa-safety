@@ -22,7 +22,7 @@ cd "${SLURM_SUBMIT_DIR:-$(pwd)}"
 if [ -d ".venv" ]; then
   echo "[INFO] Activating .venv"
   # shellcheck disable=SC1091
-  source venv/bin/activate
+  source .venv/bin/activate
 else
   echo "[WARN] .venv not found; using system Python"
 fi

@@ -16,8 +16,8 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:64
 cd "$SLURM_SUBMIT_DIR"
 
 # (Optional) Load modules / activate environment
-# module load anaconda
-source venv/bin/activate
+module load Python/3.10.8-GCCcore-12.2.0
+source .venv/bin/activate
 
 # Step 1: Prepare instruction data
 python src/prepare_instruct_data.py
