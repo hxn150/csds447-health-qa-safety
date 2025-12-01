@@ -56,7 +56,6 @@ Train: python src/train_lora.py --model model_name --dataset dataset_name
 
 - [TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
 - [BioGPT-Large](https://huggingface.co/microsoft/BioGPT-Large)
-- [LLaMA 3](https://huggingface.co/meta-llama/Meta-Llama-3-8B) (to be added)
 - [Qwen](https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking) (judge model)
 
 ## Datasets
