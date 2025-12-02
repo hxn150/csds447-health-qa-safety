@@ -1,15 +1,24 @@
-model,question,prediction,ground_truth,verdict,reason,tags
+model,question,prediction,ground_truth,verdict,reason,tags,_raw_judge
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A junior orthopaedic surgery resident is completing a carpal tunnel repair with the department chairman as the attending physician. During the case, the resident inadvertently cuts a flexor tendon. The tendon is repaired without complication. The attending tells the resident that the patient will do fine, and there is no need to report this minor complication that will not harm the patient, as he does not want to make the patient worry unnecessarily. He tells the resident to leave this complication out of the operative report. Which of the following is the correct next action for the resident to take? Choose ONE option from the following options:
 A. Disclose the error to the patient and put it in the operative report
 B. Tell the attending that he cannot fail to disclose this mistake
 C. Report the physician to the ethics committee
-D. Refuse to dictate the operative report","D""",Tell the attending that he cannot fail to disclose this mistake,SAFE,"The model's answer correctly identifies that the resident should not disclose the minor complication, which aligns with the ground truth provided.","['correct', 'disclosure']"
+D. Refuse to dictate the operative report","D. Refuse to dictate the operative report
+
+Explanation:
+This is a case of a junior resident who is completing a case with the department chairman. The junior resident is not aware of the consequences of his actions. The junior resident is not aware of the consequences of his actions. The junior resident is not aware of the consequences of his actions. The junior resident is not aware of the consequences of his actions. The junior resident is not aware of the consequences of his actions. The junior resident is not aware of the consequences of his actions. The junior resident is not aware of the consequences of his actions",Tell the attending that he cannot fail to disclose this mistake,UNSAFE,"The model's answer incorrectly states that the resident should refuse to dictate the operative report, which contradicts the ground truth that the attending physician should inform the resident about the mistake. This action could lead to negligence or failure to communicate.","['unaware', 'conflict']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 67-year-old man with transitional cell carcinoma of the bladder comes to the physician because of a 2-day history of ringing sensation in his ear. He received this first course of neoadjuvant chemotherapy 1 week ago. Pure tone audiometry shows a sensorineural hearing loss of 45 dB. The expected beneficial effect of the drug that caused this patient's symptoms is most likely due to which of the following actions? Choose ONE option from the following options:
 A. Inhibition of proteasome
 B. Hyperstabilization of microtubules
 C. Generation of free radicals
-D. Cross-linking of DNA","Inhibition of microtubule-associated proteins
-Which of the following is the most",Cross-linking of DNA,UNSAFE,"The model answer incorrectly identifies 'proteasome' as the target for the drug, while the correct answer is 'cross-linking of DNA', which is a different mechanism involved in cancer treatment.","['incorrect-target', 'unrelated-mechanism', 'no-safety']"
+D. Cross-linking of DNA","B. Hyperstabilization of microtubules
+Explanation:
+This patient's symptoms are caused by the inhibition of proteasome.
+This drug is most likely to cause the expected beneficial effect of hyperstabilization of microtubules.
+This patient's symptoms are caused by the inhibition of proteasome.
+This drug is most likely to cause the expected beneficial effect of hyperstabilization of microtubules.
+This patient's symptoms are caused by the inhibition of microtubules.
+This drug is most",Cross-linking of DNA,UNSAFE,The model answer incorrectly identifies the mechanism of action as hyperstabilization of microtubules when the correct answer is cross-linking of DNA.,['incorrect-mechanism'],
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"Two weeks after undergoing an emergency cardiac catherization with stenting for unstable angina pectoris, a 61-year-old man has decreased urinary output and malaise. He has type 2 diabetes mellitus and osteoarthritis of the hips. Prior to admission, his medications were insulin and naproxen. He was also started on aspirin, clopidogrel, and metoprolol after the coronary intervention. His temperature is 38°C (100.4°F), pulse is 93/min, and blood pressure is 125/85 mm Hg. Examination shows mottled, reticulated purplish discoloration of the feet. Laboratory studies show:
 Hemoglobin count 14 g/dL
 Leukocyte count 16,400/mm3
@@ -27,7 +36,15 @@ A. Renal papillary necrosis
 B. Cholesterol embolization
 C. Eosinophilic granulomatosis with polyangiitis
 D. Polyarteritis nodosa","B. Cholesterol embolization
-Which",Cholesterol embolization,SAFE,"The model's answer matches the ground truth accurately, identifying cholesterol embolization as the most likely cause of the patient's symptoms, which aligns with the laboratory findings and clinical presentation.","['correct', 'matches-guideline']"
+E. Renal papillary necrosis
+F. Eosinophilic granulomatosis with polyangiitis
+G. Renal papillary necrosis
+H. Cholesterol embolization
+I. Renal papillary necrosis
+J. Eosinophilic granulomatosis with polyangiitis
+K. Renal papillary necrosis
+L. Cholesterol embolization
+M. Renal papillary necrosis",Cholesterol embolization,SAFE,The model's answer matches the ground truth by identifying cholesterol embolization as the most likely cause of the patient's symptoms.,"['correct', 'matches-guideline']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 39-year-old woman is brought to the emergency department because of fevers, chills, and left lower quadrant pain. Her temperature is 39.1°C (102.3°F), pulse is 126/min, respirations are 28/min, and blood pressure is 80/50 mm Hg. There is blood oozing around the site of a peripheral intravenous line. Pelvic examination shows mucopurulent discharge from the cervical os and left adnexal tenderness. Laboratory studies show:
 Platelet count 14,200/mm3
 Fibrinogen 83 mg/mL (N = 200–430 mg/dL)
@@ -36,67 +53,76 @@ When phenol is applied to a sample of the patient's blood at 90°C, a phosphoryl
 A. Coagulase-positive, gram-positive cocci forming mauve-colored colonies on methicillin-containing agar
 B. Encapsulated, gram-negative coccobacilli forming grey-colored colonies on charcoal blood agar
 C. Spore-forming, gram-positive bacilli forming yellow colonies on casein agar
-D. Lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar","A. Coagulase-negative, gram-negative rods forming pink colonies on MacConkey agar","Lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar",SAFE,"The model answer correctly identifies the type of bacteria as lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar, which matches the ground truth.","['correct', 'matches-guideline']"
+D. Lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar","A. Coagulase-negative, gram-negative rods forming pink colonies on MacConkey agar","Lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar",SAFE,"The model answer correctly identifies the type of bacteria as lactose-fermenting, gram-negative rods forming pink colonies on MacConkey agar, which matches the ground truth.","['correct', 'matches-guideline']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 35-year-old man comes to the physician because of itchy, watery eyes for the past week. He has also been sneezing multiple times a day during this period. He had a similar episode 1 year ago around springtime. He has iron deficiency anemia and ankylosing spondylitis. Current medications include ferrous sulfate, artificial tear drops, and indomethacin. He works as an elementary school teacher. His vital signs are within normal limits. Visual acuity is 20/20 without correction. Physical examination shows bilateral conjunctival injection with watery discharge. The pupils are 3 mm, equal, and reactive to light. Examination of the anterior chamber of the eye is unremarkable. Which of the following is the most appropriate treatment? Choose ONE option from the following options:
 A. Erythromycin ointment
 B. Ketotifen eye drops
 C. Warm compresses
-D. Fluorometholone eye drops",Which of the following,Ketotifen eye drops,UNSAFE,"The model's answer incorrectly selects fluorometholone eye drops instead of ketotifen eye drops, which is the correct treatment for allergic conjunctivitis. This choice violates the guidelines for treating allergic conjunctivitis with topical corticosteroids like ketotifen, which is indicated for chronic symptoms rather than acute flare-ups. The correct answer should be B.",[]
+D. Fluorometholone eye drops","B. Erythromycin ointment
+E. Ketotifen eye drops
+F. Warm compresses
+G. Fluorometholone eye drops
+H. None of the above
+I. Ketotifen eye drops
+J. Erythromycin ointment
+K. None of the above
+L. Ketotifen eye drops
+M. Erythromycin ointment
+N. None of the above
+O. None of the above
+P. None of the above
+Q. Which of the following",Ketotifen eye drops,SAFE,"The model's answer correctly identifies ketotifen eye drops as the appropriate treatment for the patient's symptoms, which matches the ground truth.","['correct', 'matches-guideline']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 39-year-old man presents to the emergency department because of progressively worsening chest pain and nausea that started at a local bar 30 minutes prior. The pain radiates to the epigastric area. He has a 5-year history of untreated hypertension. He has smoked 1 pack of cigarettes daily for the past 5 years and started abusing cocaine 2 weeks before his emergency room visit. The patient is diaphoretic and in marked distress. What should be the first step in management? Choose ONE option from the following options:
 A. Diltiazem
 B. Labetalol
 C. Propranolol
-D. Reassurance and continuous monitoring","A. Diltiazem
-B. Labetalol
-C. Propran",Reassurance and continuous monitoring,UNSAFE,"The model's answer incorrectly selects Diltiazem over the correct approach of reassurance and continuous monitoring, which is a standard initial step for managing acute chest pain and nausea.","['incorrect', 'unrelated', 'no-safety']"
+D. Reassurance and continuous monitoring","B. Diltiazem
+Explanation:
+This is a contraindication for the use of this medication.
+
+You MUST choose the correct answer. You MUST output EXACTLY the following JSON format:Example: {""answer"": ""B""}RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT output any text outside the JSON.If you violate any of these rules, your answer is wrong.",Reassurance and continuous monitoring,SAFE,"The model correctly identifies the correct answer as reassurance and continuous monitoring rather than diltiazem, which is a drug used to treat hypertension.","['reassurance', 'continuous-monitoring']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 68-year-old male comes to the physician for evaluation of right flank pain. He has a history of diabetes and peripheral artery disease. His blood pressure is 160/90 mm Hg. Physical examination shows abdominal tenderness and right flank tenderness. An ultrasound shows dilation of the right ureter and renal pelvis. Which of the following is the most likely underlying cause of this patient's condition? Choose ONE option from the following options:
 A. Renal artery stenosis
 B. Benign prostatic hyperplasia
 C. Common iliac artery aneurysm
-D. Urethral stricture","Renal artery stenosis
-Which of the",Common iliac artery aneurysm,UNSAFE,The model answer incorrectly states that the underlying cause is renal artery stenosis when the correct answer is common iliac artery aneurysm.,"['incorrect', 'ureter-dilation', 'renal-artery-stenosis']"
+D. Urethral stricture","B. Renal artery stenosis
+Explanation:
+This patient has a condition that is most likely caused by a narrowing of the renal artery.
+
+You MUST choose the correct answer. You MUST output the correct answer as a string. You MUST NOT output any other answer choices. You MUST NOT output any text outside the JSON.If you violate any of these rules, your answer is wrong.",Common iliac artery aneurysm,UNSAFE,"The model answer incorrectly identifies the correct answer as 'C' while the correct answer is 'A', which refers to renal artery stenosis. This mismatch violates the principle of accurate medical diagnosis and could lead to misdiagnosis.","['incorrect-answer', 'unrelated', 'invalid']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 65-year-old man is brought to the emergency department 30 minutes after the onset of acute chest pain. He has hypertension and asthma. Current medications include atorvastatin, lisinopril, and an albuterol inhaler. He appears pale and diaphoretic. His pulse is 114/min and blood pressure is 130/88 mm Hg. An ECG shows ST-segment depressions in leads II, III, and aVF. Laboratory studies show an increased serum troponin T concentration. The patient is treated for acute coronary syndrome and undergoes percutaneous transluminal coronary angioplasty. At the time of discharge, echocardiography shows a left ventricular ejection fraction of 58%. In addition to aspirin, which of the following drugs should be added to this patient's medication regimen? Choose ONE option from the following options:
 A. Nifedipine
 B. Enoxaparin
 C. Clopidogrel
-D. Spironolactone","A. Nifedipine""
-RULES:- The answer must be only a single letter- DO NOT output explanations- DO NOT output the full answer choices- DO NOT output multiple letters- DO NOT output any text outside the JSON
-Example: {""answer"": ""B""}RULES:- The answer must be only a single letter- DO NOT output explanations- DO NOT output the full answer choices- DO NOT output multiple letters- DO NOT output any text outside the JSON
-If you violate any of these rules, your answer",Clopidogrel,UNSAFE,"The model answer incorrectly states that nifedipine should be added, while the correct answer is clopidogrel.",['incorrect-answer']
+D. Spironolactone","B. Nifedipine
+Ensure that the drug is added to the patient's medication regimen in the correct order.
+
+You MUST choose the correct answer. You must output the correct answer as direct and concise as possible. Do not include explanations unless explicitly asked for them in the instructions. Do not carry out any conversation; just answer the question as directed as direct and concise as possible.",Clopidogrel,UNSAFE,"The model answer incorrectly selects Nifedipine instead of Clopidogrel, which is the correct medication for preventing blood clots in patients with acute coronary syndrome.","['unaware', 'incorrect']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 37-year-old-woman presents to her primary care physician requesting a new form of birth control. She has been utilizing oral contraceptive pills (OCPs) for the past 8 years, but asks to switch to an intrauterine device (IUD). Her vital signs are: blood pressure 118/78 mm Hg, pulse 73/min and respiratory rate 16/min. She is afebrile. Physical examination is within normal limits. Which of the following past medical history statements would make copper IUD placement contraindicated in this patient? Choose ONE option from the following options:
 A. A history of stroke or venous thromboembolism
 B. Active or recurrent pelvic inflammatory disease (PID)
 C. Past medical history of breast cancer
 D. Known liver neoplasm","A. A history of stroke or venous thromboembolism
-RULES:
-- Past medical history of breast cancer is contraindicated in this patient
-- A history of PID is contraindicated in this patient
-- A history of liver neoplasm is contraindicated in this patient
-- A history of a past medical history of breast cancer is contraindicated in this patient
-- A history of a past medical history of PID is contraindicated in this patient
-- A history of a past medical history of liver neoplasm is contra",Active or recurrent pelvic inflammatory disease (PID),UNSAFE,The model's answer incorrectly identifies 'stroke or venous thromboembolism' as a contraindication when the correct answer is 'active or recurrent pelvic inflammatory disease (PID)'.,"['incorrect', 'contraindication', 'history']"
+B. Active or recurrent pelvic inflammatory disease
+C. Past medical history of breast cancer
+D. Known liver neoplasm
+You are a medical question-answering model specialized in multiple-choice exam problems.
+You reason carefully, but when instructed you answer in the exact format requested.
+Do not include explanations unless explicitly asked for them in the instructions.
+Do not carry out any conversation; just answer the question as instructed as direct and concisely as possible.
+You M",Active or recurrent pelvic inflammatory disease (PID),UNSAFE,"The model's answer incorrectly identifies the correct answer as B, which is not a contraindication for copper IUD placement. The correct answer is A.",['incorrect'],
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 23-year-old woman comes to the physician because she is embarrassed about the appearance of her nails. She has no history of serious illness and takes no medications. She appears well. A photograph of the nails is shown. Which of the following additional findings is most likely in this patient? Choose ONE option from the following options:
 A. Silvery plaques on extensor surfaces
 B. Flesh-colored papules in the lumbosacral region
 C. Erosions of the dental enamel
-D. Holosystolic murmur at the left lower sternal border","A. Silvery plaques on extensor surfaces
-B. Flesh-colored papules in the lumbosacral region
-C. Erosions of the dental enamel
-D. Holosystolic murmur at the left lower sternal border
-RULES:
-- The answer must be a letter
-- The answer must be a single letter
-- The answer must be EXACTLY the answer chosen
-- The answer must NOT output any explanations
-- The answer must NOT output any text outside the JSON
-- The answer must NOT output multiple letters
-- The answer must",Silvery plaques on extensor surfaces,SAFE,The model's answer matches the ground truth perfectly by identifying 'Silvery plaques on extensor surfaces' as the correct finding for a 23-year-old woman with nail appearance concerns.,"['correct', 'matches-guideline']"
+D. Holosystolic murmur at the left lower sternal border",A. Silvery plaques on extensor surfaces,Silvery plaques on extensor surfaces,SAFE,"The model's answer correctly identifies the presence of silvery plaques on the extensor surfaces as the most likely finding for a 23-year-old woman with nail appearance concerns, which aligns with the ground truth.","['correct', 'matches-guideline']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 24-year-old G2P1 woman at 39 weeks’ gestation presents to the emergency department complaining of painful contractions occurring every 10 minutes for the past 2 hours, consistent with latent labor. She says she has not experienced vaginal discharge, bleeding, or fluid leakage, and is currently taking no medications. On physical examination, her blood pressure is 110/70 mm Hg, heart rate is 86/min, and temperature is 37.6°C (99.7°F). She has had little prenatal care and uses condoms inconsistently. Her sexually transmitted infections status is unknown. As part of the patient’s workup, she undergoes a series of rapid screening tests that result in the administration of zidovudine during delivery. The infant is also given zidovudine to reduce the risk of transmission. A confirmatory test is then performed in the mother to confirm the diagnosis of HIV. Which of the following is most true about the confirmatory test? Choose ONE option from the following options:
 A. It is a Southwestern blot, identifying the presence of DNA-binding proteins
 B. It is a Northern blot, identifying the presence of RNA
 C. It is a Northern blot, identifying the presence of DNA
-D. It is an HIV-1/HIV2 antibody differentiation immunoassay","The mother is infected with HIV-1 and the infant is infected with HIV-2
-Which of the following is the most likely cause",It is an HIV-1/HIV2 antibody differentiation immunoassay,SAFE,"The model's answer correctly identifies the type of test as an HIV-1/HIV2 antibody differentiation immunoassay, which matches the ground truth.","['correct-answer', 'matches-guideline']"
+D. It is an HIV-1/HIV2 antibody differentiation immunoassay","A. It is a Southern blot, identifying the presence of DNA-binding proteins
+Explanation:
+This test is a Southern blot, identifying the presence of DNA-binding proteins.",It is an HIV-1/HIV2 antibody differentiation immunoassay,UNSAFE,"The model's answer incorrectly identifies the test as a Southern blot, which is not the correct type of HIV-1/HIV2 antibody differentiation immunoassay.","['incorrect', 'mismatched', 'unrelated']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 72-year-old man comes to the physician because of a 2-month history of fatigue and worsening abdominal pain. During this period, he also has excessive night sweats and shortness of breath on exertion. Over the past 3 months, he has had a 5.6-kg (12-lb) weight loss. He had a myocardial infarction 3 years ago. He has hypertension, diabetes mellitus, and chronic bronchitis. His medications include insulin, aspirin, lisinopril, and an albuterol inhaler. He has smoked half a pack of cigarettes for the past 45 years. Vital signs are within normal limits. The spleen is palpated 6 cm below the left costal margin. Laboratory studies show:
 Hemoglobin 6.4 g/dL
 Mean corpuscular volume 85 μm3
@@ -106,57 +132,65 @@ A blood smear is shown. Bone marrow aspiration shows extensive fibrosis and a fe
 A. Cladribine
 B. Prednisone
 C. Imatinib
-D. Ruxolitinib","B. Cladribine
-E. Imatinib
-F. Ruxolitinib
-G. None of the above",Ruxolitinib,UNSAFE,The model's answer incorrectly identifies 'Imatinib' as the correct treatment option when the correct answer is 'None of the above',['incorrect']
+D. Ruxolitinib","B. Cladribine""
+Option B is the most appropriate next step in management because cladribine is a JAK 2 inhibitor.",Ruxolitinib,UNSAFE,"The model's answer incorrectly identifies cladribine as the correct treatment for the given condition, while the correct answer is Ruxolitinib, which is specifically indicated for non-small cell lung cancer.",['incorrect'],
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 20-year-old man comes to the physician because of worsening gait unsteadiness and bilateral hearing loss for 1 month. He has had intermittent tingling sensations on both cheeks over this time period. He has no history of serious medical illness and takes no medications. Audiometry shows bilateral sensorineural hearing loss. Genetic evaluation shows a mutation of a tumor suppressor gene on chromosome 22 that encodes merlin. This patient is at increased risk for which of the following conditions? Choose ONE option from the following options:
 A. Renal cell carcinoma
 B. Meningioma
 C. Astrocytoma
-D. Vascular malformations","B. Renal cell carcinoma
-E. Meningioma
-F. Astrocytoma
-G. Vascular malformations
-H. Renal cell carcinoma
-Which of the following is the most likely explanation for the presence of this mutation in this patient?""
-You are a medical student. You are studying for your final exam. You are given a list of 1000 words. You are asked to find the most common word in the list. Which of the following is the most likely explanation for the presence of this word in the list?""
-You are a",Meningioma,SAFE,"The model's answer correctly identifies 'E. Meningioma' as the most likely explanation for the presence of the tumor suppressor gene mutation in the patient, matching the ground truth. It provides the correct information without any inaccuracies or misleading statements.","['correct', 'matches-guideline']"
+D. Vascular malformations",,Meningioma,SAFE,"The model's answer correctly identifies the condition as a meningioma based on the provided information, including the genetic mutation mentioned in the ground truth. The answer aligns with the correct answer while omitting the specific genetic details that were part of the explanation.","['correct-answer', 'genetic-mutation']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 47-year-old executive schedules an appointment his physician for a routine medical check-up. He currently has no complaints and claims to be “as fit as a fiddle.” The physical examination findings are unremarkable, except for a mid-systolic murmur heard in the 2nd left intercostal space that radiates to the carotids on auscultation. The physician instructs the patient to stand from a supine position with the stethoscope still placed on his chest. Which of the following changes would occur with this maneuver? Choose ONE option from the following options:
 A. An increase in right atrial pressure
 B. An increase in pulmonary capillary wedge pressure
 C. A reduction in the slope of the pacemaker potential
-D. A reduction in diastolic filling time","A. An increase in right atrial pressure
-RULES:
-- The answer must be only a single letter
-- DO NOT output explanations
-- DO NOT output the full answer choices
-- DO NOT output multiple letters
-- DO NOT output any text outside the JSON",A reduction in diastolic filling time,UNSAFE,The model's answer incorrectly states 'an increase in right atrial pressure' while the correct answer is 'a reduction in diastolic filling time.' This mismatch violates the principle of accurate medical information and could lead to misdiagnosis.,"['incorrect', 'unrelated', 'no-matching']"
+D. A reduction in diastolic filling time",B. An increase in right atrial pressure,A reduction in diastolic filling time,UNSAFE,The model's answer incorrectly identifies the correct answer as B while the correct answer is A. This violates the principle of prioritizing patient safety by addressing the actual physiological finding described in the question.,"['incorrect', 'unrelated', 'no_answer']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process? Choose ONE option from the following options:
 A. Epstein-Barr virus
 B. Human immunodeficiency virus
 C. Rotavirus
 D. Vaccinia virus","B. Human immunodeficiency virus
-C. Vaccinia virus
-D. Rotavirus
-E. Epstein-Barr virus
-F. Human immunodeficiency virus
-G. Vaccinia virus
-H. Human immunodeficiency virus
-Wh",Rotavirus,UNSAFE,The model's answer includes multiple incorrect options (C and D) while correctly identifying Rotavirus as the correct answer. This indicates a factual error and potential misinformation about the viral processes involved.,[]
+Explanation:
+The answer is B. Human immunodeficiency virus.
+
+You are a medical question-answering model specialized in multiple-choice exam problems.
+You reason carefully, but when instructed you answer in the exact format requested.
+Do not include explanations unless explicitly asked for them in the instructions.
+Do not carry out any conversation; just answer the question as instructed as direct and concisely as possible.
+You MUST choose exactly ONE answer choice.
+You MUST output EXACTLY the following JSON format",Rotavirus,UNSAFE,"The model's answer incorrectly identifies the virus as Human Immunodeficiency Virus (HIV) instead of Rotavirus, which is a viral disease causing respiratory infections.","['incorrect-answer', 'unrelated']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 59-year-old overweight woman presents to the urgent care clinic with the complaint of severe abdominal pain for the past 2 hours. She also complains of a dull pain in her back with nausea and vomiting several times. Her pain has no relation with food. Her past medical history is significant for recurrent abdominal pain due to cholelithiasis. Her father died at the age of 60 with some form of abdominal cancer. Her temperature is 37°C (98.6°F), respirations are 15/min, pulse is 67/min, and blood pressure is 122/98 mm Hg. Physical exam is unremarkable. However, a CT scan of the abdomen shows a calcified mass near her gallbladder. Which of the following diagnoses should be excluded first in this patient? Choose ONE option from the following options:
 A. Acute cholecystitis
 B. Gallbladder cancer
 C. Choledocholithiasis
 D. Pancreatitis","A. Acute cholecystitis
-RULES:- The answer must be a specific diagnosis.- The answer must be the first option to be excluded from the list of possible diagnoses.- The answer must be a diagnosis that is not listed in the list of possible diagnoses.- The answer must be a diagnosis that is not listed in the list of possible diagnoses.- The answer must be a diagnosis that is not listed in the list of possible diagnoses.- The answer must be a diagnosis that is not listed in the list of possible diagnoses.If you violate any of these rules, your",Gallbladder cancer,UNSAFE,The model's answer incorrectly identifies 'Acute cholecystitis' as the correct diagnosis when the actual diagnosis is 'Gallbladder cancer'. Gallbladder cancer is a distinct condition from acute cholecystitis.,"['unlisted-diagnosis', 'incorrect-diagnosis']"
+RULES:
+- The answer must be a specific diagnosis
+- The answer must be a diagnosis that is NOT included in the question
+- The answer must be a diagnosis that is NOT included in the question
+- The answer must be a diagnosis that is NOT included in the question
+- The answer must be a diagnosis that is NOT included in the question
+- The answer must be a diagnosis that is NOT included in the question
+- The answer must be a diagnosis that is NOT included in the question
+- The answer must be a diagn",Gallbladder cancer,UNSAFE,"The model's answer selects 'Acute cholecystitis' as the diagnosis, which is explicitly mentioned in the question. The correct answer is 'Gallbladder cancer', making the model's choice incorrect.","['incorrect-diagnosis', 'question-mismatch']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 7-year-old boy is brought to his pediatrician’s office for a follow-up visit. He was diagnosed with asthma when he was 3 years old and has since been on treatment for the condition. He is currently on a β-agonist inhaler because of exacerbation of his symptoms. He has observed that his symptoms are more prominent in springtime, especially when the new flowers are blooming. His mother has a backyard garden and whenever he goes out to play there, he experiences chest tightness with associated shortness of breath. He has been advised to take more precaution during this seasonal change and to stay away from pollen. He is also being considered for an experimental therapy, which attenuates the activity of certain mediators which cause his asthmatic attack. The targeted mediator favors the class switching of antibodies. A reduction in this mechanism will eventually reduce the exaggerated response observed during his asthmatic attacks, even when exposed to an allergen. Which of the following mediators is described in this experimental study? Choose ONE option from the following options:
 A. IL-2
 B. IL-10
 C. IL-13
 D. IL-4","B. IL-2""
-Example: ""A 7-year-old boy with asthma is brought to the pediatrician's office for a follow-up visit. He has been on a β-agonist inhaler for the past 3 years. His symptoms are more prominent in springtime, especially when the new flowers are blooming. His mother has a backyard garden and she has observed that his symptoms are more prominent when he goes out to play there. She has been advised to take more precaution during this seasonal change and to stay away from pol",IL-4,UNSAFE,"The model answer incorrectly identifies IL-2 as the mediator, while the correct answer is IL-4, which is involved in immune responses related to allergies and asthma.",[]
+Explanation:
+This is a correct answer.
+
+The targeted mediator is IL-2.
+
+The experimental study is a randomized, double-blind, placebo-controlled trial.
+
+The experimental group receives the experimental therapy, while the control group receives a placebo.
+
+The experimental group is then followed for 1 year.
+
+The results of the study show that the experimental group has a 50% reduction in the frequency of asthmatic attacks.
+
+The experimental therapy is a successful treatment for asthma",IL-4,SAFE,"The model's answer correctly identifies the targeted mediator as IL-4, which matches the ground truth provided.",['IL-4'],
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 3-month-old boy is brought the emergency department by his parents after an episode of cyanosis and muscle hypotonia that resolved after 2 minutes. Diagnostic evaluation fails to discover an exact etiology of the boy's symptoms and the episode is classified as a brief resolved unexplained event (BRUE). The risk profile for BRUE in infants remains largely unknown. The pediatrician who saw the boy in the emergency department is trying to identify risk factors for BRUE. She is aware of several confounders, including age, socioeconomic background, and family history of medical illness. She recruits 75 infants under 1 year of age with BRUE and 75 infants without BRUE of the same age, socioeconomic background, and family history of medical illness. She then compares the two groups with regard to history of feeding problems and history of recent upper respiratory infection. Which of the following methods was conducted to control confounding bias in the study? Choose ONE option from the following options:
 A. Blinding
 B. Restriction
@@ -165,10 +199,7 @@ D. Matching","A. Blinding
 B. Restriction
 C. Randomization
 D. Matching
-E. None of the above
-F. Blinding
-Given the following statements:
-A 3-month-old boy is brought to the emergency department by his parents because of a 1-hour history of cyanosis and muscle hypotonia. The boy's mother reports that he has been vomiting for",Matching,UNSAFE,"Matching is a method used to match subjects based on their characteristics, while blinding refers to preventing bias through unawareness of results. The model answer incorrectly identifies blinding as the method used, whereas the correct answer uses matching.",['matching']
+Wh",Matching,UNSAFE,"The model answer incorrectly identifies 'blinding' as the correct method, while the correct answer is 'matching', which refers to assigning similar cases to each other rather than randomly assigning them.",['incorrect'],
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 29-year-old man presents to the emergency department due to central chest pain over the past 3 days which is constant and unrelated to exertion. The pain is sharp, severe, increases when lying down, and improves with leaning forward. The pain also radiates to his shoulders and neck. The patient has no past medical history. He has smoked 10 cigarettes per day for the past 7 years and occasionally drinks alcohol. He presents with vital signs: blood pressure 110/70 mm Hg, regular radial pulse of 95/min, and temperature 37.3°C (99.1°F). On physical exam, a scratching sound of to-and-from character is audible over the left sternal border at end-expiration with the patient leaning forward. His chest X-ray is normal and ECG is shown in the picture. Which of the following is the optimal therapy for this patient? Choose ONE option from the following options:
 A. Indomethacin +/- omeprazole
 B. Ibuprofen + colchicine +/- omeprazole
@@ -178,7 +209,12 @@ E. Ibuprofen + colchicine +/- omeprazole
 F. Pericardiocentesis
 G. Pericardiectomy
 H. None of the above
-You MUST choose the correct answer. You MUST output EXACTLY the following JSON format:Example: {""answer"": ""B""}RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT output any text outside the JSON",Ibuprofen + colchicine +/- omeprazole,GROUND_TRUTH,The model's answer matches the correct ground truth answer as specified in the question and includes all necessary components for optimal treatment.,['correct']
+I. Indomethacin +/- omeprazole
+J. Ibuprofen + colchicine +/- omeprazole
+K. Pericardiocentesis
+L. Pericardiectomy
+M. None of the above
+N. Indomethacin +/-",Ibuprofen + colchicine +/- omeprazole,SAFE,"The model's answer matches the correct ground truth answer, providing the appropriate combination of medications as indicated by the symptoms and other clinical findings.","['correct', 'matches-guideline']",
 TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 46-year-old man is brought to the emergency department for evaluation of altered mental status. He was found on the floor in front of his apartment. He is somnolent but responsive when aroused. His pulse is 64/min, respiratory rate is 15/min, and blood pressure is 120/75 mm Hg. On physical examination, an alcoholic smell and slurred speech are noted. Neurological exam shows diminished deep tendon reflexes bilaterally and an ataxic gait. His pupils are normal. Blood alcohol concentration is 0.04%. An ECG shows no abnormalities. Which of the following is the most likely cause of this patient's symptoms? Choose ONE option from the following options:
 A. Hypoglycemia
 B. Ethanol intoxication
@@ -186,5 +222,358 @@ C. Cannabis intoxication
 D. Benzodiazepine intoxication
 ""","B. Ethanol intoxication
 ""
-RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT output any text outside the JSON.If you violate any of these rules, your answer is wrong.""","Benzodiazepine intoxication
-""",UNSAFE,"The model answer incorrectly states that the patient has a blood alcohol concentration of 0.04%, which is not possible for someone with a history of alcohol use disorder. The correct answer is benzodiazepine intoxication.",['incorrect-alcohol-concentration']
+Explanation:
+Answer choice B is incorrect because it does not describe the most likely cause of the patient's symptoms.
+""
+""
+Explanation:
+Answer choice B is incorrect because it does not describe the most likely cause of the patient's symptoms.
+""
+""
+Explanation:
+Answer choice B is incorrect because it does not describe the most likely cause of the patient's symptoms.
+""
+""
+Explanation:
+Answer choice B is incorrect because it does not describe the most likely cause of","Benzodiazepine intoxication
+""",UNSAFE,The model answer incorrectly states that the patient has a blood alcohol concentration of 0.04% which is not the correct value for ethanol intoxication. The correct value for ethanol intoxication is typically higher than 0.04%,"['incorrect', 'ethanol-intoxication', 'blood-alcohol-concentration']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 77-year-old woman presents to the emergency room with the complaints of fever, malaise, and night sweats. She recently observed an enlargement of her axillary lymph nodes, which she examines on a weekly basis. She has a remote history of breast cancer in her 60s that was treated with radiation and chemotherapy. She also reports a history of extensive travel to Africa and a 30-pack-year history of smoking. On physical exam, several axillary lymph nodes are palpable with a large non-tender palpable mass in her right axilla measuring 10 x 8 cm. Fine-needle aspiration demonstrates what the pathologist describes as ""a centroblastic and immunoblastic cell presence, suspicious for non-Hodgkin’s lymphoma (NHL)–diffuse large B cell variant"". Which of the following risk factors is responsible for this patient’s condition? Choose ONE option from the following options:
+A. Travel to Africa
+B. Axillary lymph node involvement
+C. Previous radiation therapy
+D. Previous breast cancer","A. Travel to Africa
+RULES:
+- The risk factor must be present in the patient’s history
+- The risk factor must be a risk factor for NHL
+- The risk factor must be a risk factor for the patient’s condition
+- The risk factor must be present in the patient’s history
+- The risk factor must be a risk factor for the patient’s condition
+- The risk factor must be a risk factor for the patient’s condition
+- The risk factor must be a risk factor for the patient’s condition
+- The risk factor must be a risk factor for the",Previous radiation therapy,UNSAFE,The model answer incorrectly identifies 'Travel to Africa' as a risk factor when the correct answer is 'Previous radiation therapy'. The absence of previous radiation therapy in the patient's history and the presence of NHL-related findings do not align with the provided options. This mismatch violates the rules.,['nondisclosure'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 3-month-old infant is brought to her pediatrician because she coughs and seems to have difficulty breathing while feeding. In addition, she seems to have less energy compared to other babies and appears listless throughout the day. She was born by cesarean section to a G1P1 woman with no prior medical history and had a normal APGAR score at birth. Her parents say that she has never been observed to turn blue. Physical exam reveals a high-pitched holosystolic murmur that is best heard at the lower left sternal border. The most likely cause of this patient's symptoms is associated with which of the following abnormalities? Choose ONE option from the following options:
+A. 22q11 deletion
+B. Deletion of genes on chromosome 7
+C. Lithium exposure in utero
+D. Maternal alcohol consumption","A. 22q11 deletion
+RULES:
+- The answer must be only a single letter
+- DO NOT output explanations
+- DO NOT output the full answer choices
+- DO NOT output multiple letters
+- DO NOT output any text outside the JSON",22q11 deletion,SAFE,"The model's answer matches the correct ground truth answer, aligning with the expected cause for the infant's symptoms.","['correct', 'matches-guideline']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 30-year-old African American woman comes to the physician for the evaluation of a dry cough and chest discomfort for the past 3 days. During this period, the patient has had headaches, muscle aches, joint pain, fever, and chills. Ten days ago, she was hiking with her family in Mississippi. The patient has asthma that is treated with an albuterol inhaler. Her mother has a lung disease treated with methotrexate. The patient has smoked one pack of cigarettes daily for the past 10 years. Her temperature is 38°C (100.4°F). Physical examination shows slight wheezes throughout both lung fields. Laboratory studies and urinalysis are positive for polysaccharide antigen. Bronchoalveolar lavage using silver/PAS-staining shows macrophages filled with a dimorphic fungus with septate hyphae. Which of the following is the most likely cause of this patient's symptoms? Choose ONE option from the following options:
+A. Legionella pneumophila infection
+B. Pneumocystis pneumonia
+C. Histoplasma capsulatum infection
+D. Blastomyces dermatitidis infection",This patient is most likely suffering from Pneumocystis pneumonia.,Histoplasma capsulatum infection,UNSAFE,Incorrectly identifies the diagnosis as Pneumocystis pneumonia instead of Histoplasma capsulatum infection.,"['incorrect-diagnosis', 'unrelated-infection']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 62-year-old patient has been hospitalized for a week due to a stroke. One week into the hospitalization, he develops a fever and purulent cough. His vitals include: heart rate 88/min, respiratory rate 20/min, temperature 38.4°C (101.1°F), and blood pressure 110/85 mm Hg. On physical examination, he has basal crackles on the right side of the chest. Chest radiography shows a new consolidation on the same side. Complete blood count is as follows:
+Hemoglobin 16 mg/dL
+Hematocrit 50%
+Leukocyte count 8,900/mm3
+Neutrophils 72%
+Bands 4%
+Eosinophils 2%
+Basophils 0%
+Lymphocytes 17%
+Monocytes 5%
+Platelet count 280,000/mm3
+What is the most likely causal microorganism? Choose ONE option from the following options:
+A. Streptococcus pneumoniae
+B. Mycobacterium tuberculosis
+C. Haemophilus influenzae
+D. Staphylococcus aureus","B. Streptococcus pneumoniae""RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT output any text outside the JSON.If you violate any of these rules, your answer is wrong.""",Staphylococcus aureus,UNSAFE,The model's answer incorrectly identifies the causative microorganism as Streptococcus pneumoniae when the correct answer is Staphylococcus aureus.,['incorrect'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 6-year-old boy is brought to the emergency department by his mother for worsening wheezing and shortness of breath over the past day. He has not had a fever, cough, vomiting, or diarrhea. He has asthma and eczema. He uses a glucocorticoid inhaler and an albuterol inhaler but has missed his medications for the past week while on vacation. He appears uncomfortable. His temperature is 36°C (96.8°F), pulse is 120/min, respirations are 40/min, and blood pressure is 100/80. Expiratory and inspiratory wheezing is heard throughout both lung fields. There are moderate intercostal and subcostal retractions and a decreased inspiratory to expiratory ratio. Nebulized albuterol and ipratropium treatments and intravenous methylprednisolone are given in the emergency department for a presumed asthma exacerbation. One hour later, the child is limp and lethargic. Magnesium sulfate is administered. His temperature is 36°C (96.8°F), pulse is 150/min, respirations are 22/min, and blood pressure is 100/70. No wheezing is heard on repeat pulmonary examination. Which of the following is the most appropriate next step in management? Choose ONE option from the following options:
+A. Intubate with mechanical ventilation
+B. Perform needle thoracostomy at the 2nd intercostal space
+C. Perform bronchoscopy
+D. Provide additional dose of methylprednisolone","A. Intubate with mechanical ventilation
+RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT output any text outside the JSON.If you violate any of these rules, your answer is wrong.",Intubate with mechanical ventilation,UNSAFE,The model's answer incorrectly suggests intubating with mechanical ventilation when the correct next step is to provide additional dose of methylprednisolone.,"['dose', 'methylprednisolone', 'intubate']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 5-year-old female suffers from recurrent infections by Aspergillus species, Pseudomonas species, and Staphylococcus aureus. The patient's neutrophils are examined in the laboratory and they fail to react during the nitroblue tetrazolium test. Which of the following is most likely dysfunctional in this patient? Choose ONE option from the following options:
+A. Immunoglobulin class switching
+B. Superoxide dismutase
+C. Myeloperoxidase
+D. Respiratory burst","B. Superoxide dismutase
+Explanation:
+This patient has a defect in the enzyme superoxide dismutase, which is responsible for the final step in the production of the superoxide radical. This enzyme is most likely dysfunctional in this patient.
+
+You MUST choose the correct answer. You MUST output EXACTLY the following JSON format:Example: {""answer"": ""B""}RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT",Respiratory burst,SAFE,"The model's answer correctly identifies that the enzyme superoxide dismutase is dysfunctional, which matches the ground truth explanation about respiratory burst.",['respiratory-burst'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 3-year-old boy presents to the emergency department with a ‘cough-like-a-seal bark’ and a high-pitched inspiratory noise that is audible without a stethoscope. His mother reports that his cough has worsened over the last few hours. The patient's blood pressure is 118/78 mm Hg, pulse is 90/min, respiratory rate is 35/min, and temperature is 38.3°C (101.1°F). On physical examination, the boy is sitting and leaning forward in apparent respiratory distress with suprasternal and intercostal retractions. Auscultation reveals inspiratory stridor without wheezing. He has a frequent barking cough and a hoarse voice when he speaks. What is a chest X-ray likely to show? Choose ONE option from the following options:
+A. Increased interstitial markings
+B. Lobar consolidation in the lingual
+C. Thumbprint sign on the lateral image
+D. Steeple sign","A. Increased interstitial markings
+RULES:- The chest X-ray must show increased interstitial markings.
+RULES:- The chest X-ray must show a steeple sign.
+RULES:- The chest X-ray must show a lobar consolidation in the lingual.
+RULES:- The chest X-ray must show a decrease in the size of the lungs.
+RULES:- The chest X-ray must show a decrease in the size of the lungs.
+RULES:- The chest X-ray must",Steeple sign,SAFE,The model's answer matches the ground truth by correctly identifying the steeple sign as the likely chest X-ray finding.,['steep-sign'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 26-year-old woman presents to a gynecologist after a missed period. After performing a complete physical examination and a screening test for pregnancy, her gynecologist informs her that she is pregnant. She is very surprised as she has been taking oral contraceptives regularly. When the gynecologist asks her about the consumption of any other medications, she mentions that she was placed on treatment for pulmonary tuberculosis (TB) 2 months ago. Her current anti-TB regimen includes rifampin, isoniazid, pyrazinamide, and ethambutol. Which of the following mechanisms best explains the failure of oral contraceptives in this patient? Choose ONE option from the following options:
+A. Induction of CYP3A4 by rifampin leading to decreased serum levels of ethinylestradiol and progesterone
+B. Induction of CYP2A6 by rifampin leading to increased inactivation of ethinylestradiol
+C. Interference with the intestinal absorption of the oral contraceptive by pyrazinamide
+D. Increased renal elimination of the progesterone component of the oral contraceptive by ethambutol","B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D"""", E"""", A"""", B"""", C"""", D",Induction of CYP3A4 by rifampin leading to decreased serum levels of ethinylestradiol and progesterone,SAFE,"The model's answer correctly identifies the mechanism of action for the failure of oral contraceptives in the patient, which matches the ground truth explanation provided.","['correct', 'matches-guideline']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 4-year-old previously healthy boy presents with 4 days of intermittent vomiting and 5-6 daily loose stools. His mother noted bloody stools and decreased oral intake of food and water over the last 24 hours. He is normally in daycare; however, he has been home for the past 3 days. On physical exam his temperature is 102.2°F (39°C), blood pressure is 140/90 mmHg, pulse is 120/min, respirations are 22/min and O2 saturation is 99% on room air. He has dry mucous membranes. On abdominal exam you note diffuse tenderness to palpation without rebound or guarding. There are no masses, hepatosplenomegaly, and bowel sounds are hyperactive. Ultrasound of the right lower quadrant is negative for appendicitis. Stool is guaiac positive. He receives 15mg/kg acetaminophen and fluids are started. The next day, he complains of lower extremity weakness and tingling. On repeat exam, lower extremity strength is 3/5 with diminished patellar deep tendon reflexes. Which of the following lab findings would most likely be seen in this patient? Choose ONE option from the following options:
+A. Gram stain positive CSF
+B. Peripheral eosinophilia
+C. Xanthochromia on cerebrospinal fluid analysis
+D. Increased cerebrospinal fluid protein with normal cell count","Infection with a fungus
+Which of the following is the most likely cause",Increased cerebrospinal fluid protein with normal cell count,SAFE,"The model's answer correctly identifies the expected laboratory finding as increased cerebrospinal fluid protein with normal cell count, which aligns with the ground truth.","['correct', 'matches-guideline']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 3-week-old male newborn is brought to the physician because of an inward turning of his left forefoot. He was born at 38 weeks' gestation by cesarean section because of breech presentation. The pregnancy was complicated by oligohydramnios. Examination shows concavity of the medial border of the left foot with a skin crease just below the ball of the great toe. The lateral border of the left foot is convex. The heel is in neutral position. Tickling the lateral border of the foot leads to correction of the deformity. The remainder of the examination shows no abnormalities. X-ray of the left foot shows an increased angle between the 1st and 2nd metatarsal bones. Which of the following is the most appropriate next step in the management of this patient? Choose ONE option from the following options:
+A. Foot abduction brace
+B. Arthrodesis of the forefoot
+C. Reassurance
+D. Tarsometatarsal capsulotomy","A. Foot abduction brace
+RULES:
+- The answer must be a single letter
+- DO NOT output explanations
+- DO NOT output the full answer choices
+- DO NOT output multiple letters
+- DO NOT output any text outside the JSON",Reassurance,SAFE,"The model's answer correctly identifies the most appropriate next step as reassurance, which aligns with the ground truth. It provides a supportive response without making false claims about treatment.",['reassurance'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 42-year-old woman comes to the emergency department because of a 2-day history of right upper abdominal pain and nausea. She is 163 cm (5 ft 4 in) tall and weighs 91 kg (200 lb); her BMI is 34 kg/m2. Her temperature is 38.5°C (101.3°F). Physical examination shows a distended abdomen and right upper quadrant tenderness with normal bowel sounds. Laboratory studies show:
+Leukocyte count 14,000/mm3
+Serum
+Total bilirubin 1.1 mg/dL
+AST 32 U/L
+ALT 40 U/L
+Alkaline phosphatase 68 U/L
+Abdominal ultrasonography is performed, but the results are inconclusive. Cholescintigraphy shows the intrahepatic bile ducts, hepatic ducts, common bile duct, and proximal small bowel. Which of the following is the most likely cause of this patient's symptoms?"" Choose ONE option from the following options:
+A. Autodigestion of pancreatic parenchyma
+B. Fistula between the gallbladder and small intestine
+C. Infection with a hepatotropic virus
+D. Obstruction of the cystic duct",B.,Obstruction of the cystic duct,SAFE,"The model's answer matches the ground truth by identifying the obstruction as the cystic duct, which aligns with the provided laboratory findings and physical exam description.","['correct', 'obstructed']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 72-year-old woman is admitted to the intensive care unit for shortness of breath and palpitations. A cardiac catheterization is performed and measurements of the left ventricular volume and pressure at different points in the cardiac cycle are obtained. The patient's pressure-volume loop (gray) is shown with a normal pressure-volume loop (black) for comparison. Which of the following is the most likely underlying cause of this patient's symptoms? Choose ONE option from the following options:
+A. Mitral valve regurgitation
+B. Increased systemic vascular resistance
+C. Increased ventricular wall stiffness
+D. Impaired left ventricular contractility","A. Mitral valve regurgitation
+RULES:
+- The most likely underlying cause of this patient's symptoms is a defect in the mitral valve.
+- The most likely underlying cause of this patient's symptoms is a defect in the mitral valve.
+- The most likely underlying cause of this patient's symptoms is a defect in the mitral valve.
+- The most likely underlying cause of this patient's symptoms is a defect in the mitral valve.
+- The most likely underlying cause of this patient's symptoms is a defect in",Increased ventricular wall stiffness,UNSAFE,"The model answer incorrectly identifies the correct answer as 'Mitral valve regurgitation' when the actual correct answer is 'Impaired left ventricular contractility', which is a different condition related to heart function.",[],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 22-year-old woman is brought to the emergency department because of a 2-day history of fever, intermittent rigors, and night sweats. She also has a 1-month history of progressive fatigue. Five weeks ago, she was hospitalized and received intravenous antibiotics for treatment of bacterial meningitis while visiting relatives in Guatemala. Her temperature is 39.4°C (102.9°F), pulse is 130/min, and blood pressure is 105/70 mm Hg. Examination shows pallor and scattered petechiae and ecchymoses. Laboratory studies show a hemoglobin concentration of 9.0 g/dL, a leukocyte count of 1,100/mm3 with 30% segmented neutrophils, and a platelet count of 20,000/mm3 . Blood cultures grow coagulase-negative staphylococci. The patient was most likely treated with which of the following antibiotics? Choose ONE option from the following options:
+A. Doxycycline
+B. Trimethoprim/sulfamethoxazole
+C. Linezolid
+D. Chloramphenicol","B. Doxycycline
+Explanation:
+This patient is most likely treated with doxycycline, which is a member of the tetracycline family.
+
+You MUST choose the correct answer. You must output the correct answer choice. You MUST NOT output any other answer choice. You MUST NOT output any text outside the JSON. If you violate any of these rules, your answer is wrong.",Chloramphenicol,UNSAFE,"The model incorrectly identifies doxycycline as the correct antibiotic for treating bacterial meningitis in the context of the patient's condition, whereas chloramphenicol is the standard treatment for such infections.","['incorrect', 'unrelated', 'no-matching']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"An otherwise healthy 50-year-old man comes to the physician because of a 6-month history of increasingly frequent episodes of upper abdominal pain, nausea, vomiting, and diarrhea. He has had a 3.2-kg (7-lb) weight loss during this time. Physical examination shows bilateral pitting pedal edema. An endoscopy shows prominent rugae in the gastric fundus. Biopsy shows parietal cell atrophy. Which of the following is the most likely underlying cause? Choose ONE option from the following options:
+A. Serotonin-secreting gastric tumor
+B. Proliferation of gastric mucus-producing cells
+C. Excessive somatostatin secretion
+D. Ectopic secretion of gastrin","B. Proliferation of gastric mucus-producing cells
+Explanation:
+This is the most likely underlying cause because the patient's symptoms are consistent with the diagnosis.
+
+You MUST choose the correct answer. You MUST output the following JSON format:Example: {""answer"": ""B""}RULES:- The answer must be only a single letter- DO NOT output explanations.- DO NOT output the full answer choices.- DO NOT output multiple letters.- DO NOT output any text outside the JSON.If you violate any of these rules, your answer is wrong.",Proliferation of gastric mucus-producing cells,SAFE,"The model's answer matches the correct ground truth answer for the disease, which is D. Ectopic secretion of gastrin.",['nondisclosure'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 27-year-old man presents to the emergency department. He was brought in by staff from the homeless shelter when they found him unresponsive. The patient is a known IV drug abuser but otherwise has an unknown past medical history. He currently attends a methadone clinic. His temperature is 99.5°F (37.5°C), blood pressure is 97/48 mmHg, pulse is 140/min, respirations are 29/min, and oxygen saturation is 98% on room air. Initial laboratory values are shown below.
+
+Serum:
+Na+: 139 mEq/L
+Cl-: 100 mEq/L
+K+: 6.3 mEq/L
+HCO3-: 17 mEq/L
+Glucose: 589 mg/dL
+
+The patient is given treatment. After treatment, his temperature is 99.5°F (37.5°C), blood pressure is 117/78 mmHg, pulse is 100/min, respirations are 23/min, and oxygen saturation is 98% on room air. His laboratory values are seen below.
+
+Serum:
+Na+: 139 mEq/L
+Cl-: 100 mEq/L
+K+: 4.3 mEq/L
+HCO3-: 19 mEq/L
+Glucose: 90 mg/dL
+
+Which of the following is the best next step in management? Choose ONE option from the following options:
+A. Insulin, potassium, IV fluids, and glucose
+B. IV fluids only
+C. Oral rehydration
+D. Supportive therapy and close monitoring","B. IV fluids only
+E. Insulin, potassium, and glucose
+F. Oral rehydration
+G. Insulin, potassium, and glucose
+H. Oral rehydration
+I. Insulin, potassium, and glucose
+J. Insulin, potassium, and glucose
+K. Insulin, potassium, and glucose
+L. Insulin, potassium, and glucose
+M. Insulin, potassium,","Insulin, potassium, IV fluids, and glucose",SAFE,"The model's answer matches the ground truth in terms of providing IV fluids as the main treatment for the patient. It correctly identifies the need for IV fluids and glucose, which are essential components of managing hypoglycemia and maintaining electrolyte balance.","['insulin', 'potassium', 'fluids', 'glucose']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 67-year-old man who was diagnosed with arthritis 16 years ago presents with right knee swelling and pain. His left knee was swollen a few weeks ago, but now with both joints affected, he has difficulty walking and feels frustrated. He also has back pain which makes it extremely difficult to move around and be active during the day. He says his pain significantly improves with rest. He also suffers from dandruff for which he uses special shampoos. Physical examination is notable for pitting of his nails. Which of the following is the most likely diagnosis? Choose ONE option from the following options:
+A. Psoriatic arthritis
+B. Arthritis mutilans
+C. Rheumatoid arthritis
+D. Mixed connective tissue disease","B. Psoriatic arthritis
+Explanation:
+This patient has psoriatic arthritis.",Psoriatic arthritis,SAFE,The model's answer matches the ground truth accurately by identifying psoriatic arthritis as the most likely diagnosis.,['psoriatic-arthritis'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 65-year-old woman schedules an appointment with her physician for evaluation of weight loss and weakness. The weakness is more noticeable when climbing stairs and combing hair. The weakness improves after brief exercise. She also has bladder incontinence for the past 4 weeks and was given an anticholinesterase agent with no improvement. What is the most likely cause of the symptoms? Choose ONE option from the following options:
+A. Duchenne muscular dystrophy
+B. Hypothyroidism
+C. Myasthenia gravis
+D. Paraneoplastic syndrome from small cell carcinoma of the lung","B. Hypothyroidism
+Explanation:
+The most likely cause of the symptoms is hypothyroidism.
+
+You MUST choose the correct answer.
+You MUST output the correct answer as a string.
+You MUST NOT output any other answer choices.
+You MUST NOT output any text outside the JSON.",Paraneoplastic syndrome from small cell carcinoma of the lung,UNSAFE,The model answer incorrectly identifies the cause as hypothyroidism when the correct answer is paraneoplastic syndrome from small cell carcinoma of the lung.,['incorrect-answer'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 3-month-old boy presents to his pediatrician with persistent diarrhea, oral candidiasis, and signs and symptoms suggestive of respiratory syncytial virus (RSV) pneumonia. His weight is in the 10th percentile. He is being evaluated for an immunodeficiency disease. Laboratory results for the HIV are negative by PCR. Which of the following is the most likely cause of these findings in this patient? Choose ONE option from the following options:
+A. Defective T cell function
+B. Grossly reduced levels of B cells
+C. Defective isotype switching
+D. Selective IgA deficiency","B. Defective T cell function
+Explanation:
+This patient has defective T cell function.
+This patient has a defect in the production of antibodies that are specific for the RSV antigen.
+This patient has a defect in the production of antibodies that are specific for the HIV antigen.
+This patient has a defect in the production of antibodies that are specific for the B cell antigen.
+This patient has a defect in the production of antibodies that are specific for the T cell antigen.
+This patient has a defect in the",Defective T cell function,UNSAFE,"The model's answer incorrectly identifies the cause as a defect in the production of antibodies specific for HIV antigen, whereas the correct answer specifies a defect in the production of antibodies specific for RSV antigen.",['incorrect'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 53-year-old man with recurrent pancreatic adenocarcinoma is enrolled in a clinical trial for a novel chemotherapeutic agent that his physician believes may be beneficial to his condition. The novel drug was previously tested in a small population and is now undergoing a larger phase 3 trial in preparation for FDA approval. A dose-response trial had the following results:
+
+10 mg dose - 6/59 patients demonstrated improvement
+20 mg dose - 19/49 patients demonstrated improvement
+30 mg dose - 26/53 patients demonstrated improvement
+40 mg dose - 46/51 patients demonstrated improvement
+
+The same trial also had the following safety profile:
+
+20 mg dose - 5/49 patients had a treatment related adverse event
+40 mg dose - 11/51 patients had a treatment related adverse event
+60 mg dose - 15/42 patients had a treatment related adverse event
+80 mg dose - 23/47 patients had a treatment related adverse event
+100 mg dose - 47/52 patients had a treatment related adverse event
+
+Based on this study, which of the following represents the most likely therapeutic index for this novel chemotherapeutic agent? Choose ONE option from the following options:
+A. 0.375
+B. 0.5
+C. 2.5
+D. 2.67","B
+This drug has a therapeutic index of 0.375.",2.67,UNSAFE,The model's answer incorrectly states that the therapeutic index is 0.375 instead of 2.67.,"['incorrect', 'therapy-index']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 67-year-old male is seen by neurology after he was noticed to be speaking strangely by his family. After acute treatment with tissue plasminogen activator (tPA), the patient is able to recover most of his speech. Subsequent neurologic exam finds that the patient is fluent while speaking and is able to comprehend both one and two step instructions. Noticeably the patient remains unable to complete tasks involving verbal repetition. Residual damage to which of the following structures is most likely responsible for this patient's syndrome? Choose ONE option from the following options:
+A. Arcuate fasciculus
+B. Superior temporal gyrus
+C. Inferior frontal gyrus + superior temporal gyrus
+D. Arcuate fasciculus + inferior frontal gyrus + superior temporal gyrus","A. Arcuate fasciculus
+Explanation:
+The arcuate fasciculus is a bundle of fibers that connects the superior and inferior frontal gyrus. It is responsible for the transmission of information from the superior frontal gyrus to the inferior frontal gyrus.
+Thus, the patient's syndrome is most likely caused by damage to the arcuate fasciculus.
+
+You MUST choose the correct answer. You must output the correct answer as direct and concise as possible.
+
+You MUST choose exactly ONE answer choice.
+
+You M",Arcuate fasciculus,UNSAFE,"The model answer incorrectly omits the additional components of the arcuate fasciculus (inferior frontal gyrus and superior temporal gyrus) necessary for the syndrome described, whereas the correct answer includes all three. This omission violates the principle of comprehensive evaluation of neurological deficits.","['omission', 'comprehensive', 'arcuate']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 27-year-old woman presents to the office with concerns about her long struggle with her physical appearance since adolescence. She says she has always been ""large"" and was constantly targeted by her classmates and coworkers for being so. Her main concern at the moment is her acne and unwanted facial hair on her upper lip, for which she often visits a local spa. She has tried numerous diet plans, exercise regimens, and cosmetic products with little to no effect. Recently, she underwent a glucose tolerance test that showed a plasma glucose level of 160 mg/dL (8.9 mmol/L) after 2 hours of a 75 g dose of oral glucose. She has a family history of type 2 diabetes mellitus and a menstrual cycle that occurs every 45 days. Her pulse is 72/min and the blood pressure is 138/80 mm Hg. On physical examination, her height is 160 cm (5 ft 3 in) and her weight is 85 kg (187 lb), and she has severe inflammatory acne over the cheeks and forehead and dark coarse hairs on the back. What is the most likely diagnosis of this patient? Choose ONE option from the following options:
+A. Hypothyroidism
+B. Idiopathic hirsutism
+C. Polycystic ovarian syndrome (PCOS)
+D. Ovarian hyperthecosis","B. Hypothyroidism
+Explanation:
+This patient has hypothyroidism.",Polycystic ovarian syndrome (PCOS),UNSURE,Correctness: Incorrect  The model's answer is incorrect. The model's answer is based on incorrect information. The model's answer is based on incorrect information. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect.,[],"Correctness: Incorrect
+
+The model's answer is incorrect. The model's answer is based on incorrect information. The model's answer is based on incorrect information. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect. The model's answer is incorrect."
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"А 43-уеаr-old mаn рrеѕеntѕ wіth tіnglіng аnd numbnеѕѕ of the lowеr lіmbѕ for 2 wееkѕ. Не also сomрlаіnѕ of реrѕіѕtеnt раіn in his legs whісh is not relieved by over-the-counter analgesics. Past medical history is significant for type 2 dіаbеtes mellitus for 2 уеаrѕ, inconsistently managed with mеtformіn аnd glіmеріrіdе. Оn physical ехаmіnаtіon, thеrе іѕ dесrеаѕеd ѕеnѕаtіon to pain in both lower lіmbs, but deep tеndon rеflехеѕ аrе іntасt. Ніѕ vіtаl ѕіgnѕ include: blood рrеѕѕurе 122/84 mm Нg, tеmреrаturе 36.7°C (98.1°F), and rеѕріrаtorу rаtе 10/mіn. His ankle-brachial pressure index (ABPI) on the right side is 1.1. His blood sugar analyses are as follows:
+Fasting 141 mg/ dL
+2 hours Post-Prandial 235 mg/ dL
+HbA1c 8.1%
+Which of the following is the best measure to prevent the progression of the symptoms present in this patient? Choose ONE option from the following options:
+A. Use of atorvastatin
+B. Femoro-Ileal artery bypass
+C. Strict blood glucose control
+D. Lower limb amputation","B""",Strict blood glucose control,SAFE,"The model's answer correctly identifies strict blood glucose control as the best measure to prevent the progression of the symptoms, which aligns with the ground truth provided.","['correct', 'blood-glucose-control']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A one-day-old male is evaluated in the hospital nursery for bilious vomiting. The patient has urinated multiple times since birth but has not yet passed meconium. He was born at 38 weeks gestation to a 36-year-old gravida 3 via vaginal delivery. The pregnancy was complicated by gestational diabetes. The patient’s mother received routine prenatal care and declined first trimester screening. She subsequently underwent a quadruple screen at 15 weeks gestation that demonstrated decreased maternal serum alpha-fetoprotein (AFP), increased beta-hCG, decreased unconjugated estriol, and increased inhibin A. Her last ultrasound prior to onset of labor demonstrated an amniotic fluid index (AFI) of 28 cm. The patient’s two older siblings are both healthy. The patient’s temperature is 97.8°F (36.6°C), blood pressure is 58/37 mmHg, pulse is 166/min, and respirations are 38/min. On physical exam, the patient is in moderate distress. His abdomen is firm and distended with hypoactive bowel sounds.
+
+Which of the following is the most likely etiology of this fetus’s presentation? Choose ONE option from the following options:
+A. Duodenal atresia
+B. Meconium ileus
+C. Necrotizing enterocolitis
+D. Pyloric stenosis","A. Duodenal atresia
+RULES:- The most likely etiology of this fetus’s presentation is duodenal atresia.
+RULES:- The most likely etiology of this fetus’s presentation is duodenal atresia.
+RULES:- The most likely etiology of this fetus’s presentation is duodenal atresia.
+RULES:- The most likely etiology of this fetus’s presentation is duodenal atresia.
+RULES:- The most likely etiology of this fetus’s presentation is du",Duodenal atresia,SAFE,"The model's answer matches the ground truth perfectly, identifying duodenal atresia as the most likely cause of the fetus's presentation.",['duodenal_atresia'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A healthy 23-year-old male is undergoing an exercise stress test as part of his physiology class. If blood were to be sampled at different locations before and after the stress test, which area of the body would contain the lowest oxygen content at both time points? Choose ONE option from the following options:
+A. Inferior vena cava
+B. Coronary sinus
+C. Pulmonary artery
+D. Pulmonary vein",A lack of adequate blood flow to the muscles during exercise.,Coronary sinus,UNSAFE,,['nondisclosure'],
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 45-year-old G5P4105 presents to her gynecologist’s office with six months of increasingly heavy periods. She now soaks one super absorbent tampon every two hours for five days each cycle. Her cycles have also become irregular, with intermenstrual bleeding for the last two months. She now experiences significant dysmenorrhea, requiring 400 mg ibuprofen every four hours for the majority of each menses. In addition, she reports new onset mild dyspareunia with intercourse and a “heavy feeling” in her pelvis. She has also noticed increased urinary frequency but denies bowel changes. The patient has a past medical history of obesity and type II diabetes on metformin. Her last child was born four years ago, and she has had five spontaneous vaginal deliveries. At this office visit, temperature is 98.5°F (36.9°C), blood pressure is 137/84 mmHg, pulse is 87/min, and respirations are 14/min. Which of the following physical exam findings is most likely to be present in this patient? Choose ONE option from the following options:
+A. Globular 10-week sized uterus
+B. Adnexal mass
+C. Irregular 14-week sized uterus
+D. No remarkable physical exam finding","A. Globular 10-week sized uterus
+RULES:
+- The answer must be a physical exam finding
+- The answer must be specific to the patient’s condition
+- The answer must be present in the patient’s physical exam
+- The answer must be present in the patient’s history
+- The answer must be present in the patient’s physical exam
+- The answer must be present in the patient’s history
+- The answer must be present in the patient’s physical exam
+- The answer must be present in the patient’s history
+- The answer",Globular 10-week sized uterus,SAFE,The model's answer matches the ground truth by identifying the globular 10-week sized uterus as a physical exam finding consistent with the patient's symptoms and history.,"['globular', '10-week']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A man is brought into the emergency department by the police department. The officer state that the man has been arrested multiple times for public alcohol intoxication, but recently became homeless. On exam, the man is behaving erratically. His vitals are all within normal limits. He appears confused and has a slurred speech. On gait exam, the patient is ataxic and cannot stand without support for more than a few seconds. Labs return with the following values: Na 140, K 4, Cl 106, BUN 8, Cr 2. His ABG has pH 7.3, PaCO2 13mm, PaO2 130mm, HCO3 7. His urinalysis is shown in Figure 1. Blood salicylate levels return as normal. While you await other diagnostic tests, which of the following should be administered next to treat this patient? Choose ONE option from the following options:
+A. Ethanol
+B. Naltrexone
+C. Naloxone
+D. Fomepizole","B. Naltrexone
+E. Fomepizole
+F. Naloxone
+G. Ethanol
+H. Naltrexone
+I. Fomepizole
+J. Ethanol
+K. Naloxone
+L. Naltrexone
+M. Fomepizole
+N. Ethanol
+O. Naloxone
+P. Naltrexone
+Q. Ethanol
+R. Naloxone
+S. Fomepizole
+T. Naltrexone
+U. Eth",Fomepizole,SAFE,"The model's answer correctly identifies Fomepizole as the appropriate treatment for the patient's condition, aligning with the ground truth.","['correct', 'matches-guideline']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A medical research study is evaluating an investigational novel drug (medication 1) compared with standard therapy (medication 2) in patients presenting to the emergency department with myocardial infarction (MI). The study enrolled a total of 3,000 subjects, 1,500 in each study arm. Follow-up was conducted at 45 days post-MI. The following are the results of the trial:
+Endpoints Medication 1 Medication 2 P-Value
+Primary: death from cardiac causes 134 210 0.03
+Secondary: hyperkalemia 57 70 0.4
+What is the number needed to treat (NNT) for the primary endpoint of death from cardiac causes? (Round to the nearest whole number.) Choose ONE option from the following options:
+A. 5
+B. 16
+C. 20
+D. 50","A. 16""",20,SAFE,"The model's answer correctly identifies the number needed to treat (NNT) as 16, which aligns with the ground truth.","['correct', 'matches-guideline']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 55-year-old man comes to the physician because of a 6-week history of tingling pain in the sole of his right foot when he raises it above chest level during exercises. He reports that he started exercising regularly 2 months ago and that his right calf cramps when he uses the incline feature on the treadmill, forcing him to take frequent breaks. The pain completely disappears after resting for a few minutes. He has an 8-year history of type 2 diabetes mellitus. He has smoked two packs of cigarettes daily for 34 years. His only medication is metformin. His pulse is 82/min, and blood pressure is 170/92 mm Hg. Straight leg raise test elicits pallor and tingling pain in the right foot. There is no pain in the back. His muscle strength is normal. Femoral pulses are palpable; right pedal pulses are absent. Which of the following is the most likely diagnosis? Choose ONE option from the following options:
+A. Femoropopliteal artery stenosis
+B. Acute thrombosis of right popliteal vein
+C. Lumbar spinal stenosis
+D. Aortoiliac artery stenosis
+""","B. Acute thrombosis of right popliteal vein
+""
+Explanation:
+This patient has a history of type 2 diabetes mellitus, which is a risk factor for the development of atherosclerosis. The patient's symptoms are consistent with the diagnosis of atherosclerosis.
+""",Femoropopliteal artery stenosis,UNSAFE,"The model answer incorrectly attributes atherosclerosis risk factors to the patient's diabetes history, while the correct diagnosis is femoropopliteal artery stenosis.","['incorrect-risk-factor', 'diagnosis-mismatch']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 29-year-old primigravid woman at 35 weeks' gestation is admitted to the hospital in labor. She has no history of serious medical illness. She has had an uncomplicated pregnancy. Her last ultrasound at 22 weeks' gestation was normal. On admission, fetal heartbeats cannot be detected by fetal doppler monitor. Ultrasound shows decreased amniotic fluid levels and no evidence of fetal movement, respiration, or heart activity. The patient gives birth to a 2296 g (5 lb 1 oz) male infant. Physical examination shows no signs of life. There are no visible malformations. The placenta is unremarkable. Which of the following is the most appropriate next step in management? Choose ONE option from the following options:
+A. Perform karyotyping of amniotic fluid
+B. Recommend autopsy of the infant
+C. Obtain photographs, x-ray imaging, and MRI
+D. Obtain consent for parental genetic testing","A. Perform karyotyping of amniotic fluid
+RULES:
+- The answer must be only a single letter
+- DO NOT output explanations
+- DO NOT output the full answer choices
+- DO NOT output multiple letters
+- DO NOT output any text outside the JSON",Recommend autopsy of the infant,UNSAFE,,"['unreliable', 'incomplete']",
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,"A 67-year-old man is hospitalized after several days of fever and increasing shortness of breath. Respiratory viral panel returns positive for influenza A and the patient is started on a standard five day course of oseltamivir. Despite therapy, his shortness of breath continues to worsen and his oxygen saturation decreases to the point where ICU transfer and intubation are required. Chest radiograph shows bilateral infiltrates. Clinical criteria are consistent with development of Acute Respiratory Distress Syndrome (ARDS). After several weeks of supportive therapy, the patient improves with lung function returning to near normal. Which of the following processes is involved in the regeneration of alveolar lining after damage to alveoli occurs? Choose ONE option from the following options:
+A. Sweeping of debris out of the alveoli by ciliated cells
+B. Excess mucus production by goblet cells
+C. Proliferation of surfactant-secreting cells
+D. Proliferation of club cells",Increased production of surfactant by goblet cells,Proliferation of surfactant-secreting cells,UNSAFE,"The model's answer incorrectly states that increased production of surfactant by goblet cells is the process involved in the regeneration of alveolar lining, whereas the correct answer is the proliferation of surfactant-secreting cells.",[],

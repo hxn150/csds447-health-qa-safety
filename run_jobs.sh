@@ -35,7 +35,7 @@ echo "[INFO] TinyLlama on MedQA"
 python3 src/run_bench.py \
   --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
   --dataset medqa \
-  -n 20 \
+  -n 50 \
   --max_workers 2 \
   --judge_model Qwen/Qwen3-0.6B
 
@@ -43,7 +43,7 @@ echo "[INFO] BioGPT-Large on MedQA"
 python3 src/run_bench.py \
   --models microsoft/BioGPT-Large \
   --dataset medqa \
-  -n 20 \
+  -n 50 \
   --max_workers 2 \
   --judge_model Qwen/Qwen3-0.6B
 
@@ -54,7 +54,7 @@ python3 src/run_bench.py \
   --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 \
   --dataset pubmedqa \
   --split train \
-  -n 20 \
+  -n 50 \
   --max_workers 2 \
   --judge_model Qwen/Qwen3-0.6B
 
@@ -63,7 +63,7 @@ python3 src/run_bench.py \
   --models microsoft/BioGPT-Large \
   --dataset pubmedqa \
   --split train \
-  -n 20 \
+  -n 50 \
   --max_workers 2 \
   --judge_model Qwen/Qwen3-0.6B
 
@@ -71,4 +71,4 @@ echo "[INFO] Running evaluation over all outputs..."
 python3 src/evaluate.py --outputs outputs --dest outputs/metrics.csv
 python3 src/evaluate_judge.py --outputs outputs --dest outputs/metrics_judge.csv
 
-echo "[INFO] Job completed. Metrics written to outputs/metrics_qwen.csv"
+echo "[INFO] Job completed. Metrics written to outputs"
