@@ -22,21 +22,21 @@ Always include the Qwen/Qwen3-0.6B judge so every run collects safety verdicts.
 **MedQA (USMLE)**
 - TinyLlama/TinyLlama-1.1B-Chat-v1.0  
   ```bash
-  python3 src/run_bench.py --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset medqa -n 20 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
+  python3 src/run_bench.py --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset medqa -n 50 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
   ```
 - microsoft/BioGPT-Large  
   ```bash
-  python3 src/run_bench.py --models microsoft/BioGPT-Large --dataset medqa -n 20 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
+  python3 src/run_bench.py --models microsoft/BioGPT-Large --dataset medqa -n 50 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
   ```
 
 **PubMedQA (pqa_labeled, train split)**
 - TinyLlama/TinyLlama-1.1B-Chat-v1.0  
   ```bash
-  python3 src/run_bench.py --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset pubmedqa --split train -n 20 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
+  python3 src/run_bench.py --models TinyLlama/TinyLlama-1.1B-Chat-v1.0 --dataset pubmedqa --split train -n 50 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
   ```
 - microsoft/BioGPT-Large  
   ```bash
-  python3 src/run_bench.py --models microsoft/BioGPT-Large --dataset pubmedqa --split train -n 20 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
+  python3 src/run_bench.py --models microsoft/BioGPT-Large --dataset pubmedqa --split train -n 50 --max_workers 2 --judge_model Qwen/Qwen3-0.6B
   ```
 
 You can benchmark several models at once by passing a space-separated list to `--models`.
@@ -45,7 +45,12 @@ You can benchmark several models at once by passing a space-separated list to `-
 
 Summarise accuracy and safety rates (including the judge verdicts) with:
 ```bash
-python3 src/evaluate.py --outputs outputs --dest outputs/metrics_qwen.csv
+python3 src/evaluate.py --outputs outputs --dest outputs/metrics_judge.csv
+```
+
+### All-in-one bash script
+```bash
+bash run_jobs.sh
 ```
 
 ### Fine-tuning with LoRA
