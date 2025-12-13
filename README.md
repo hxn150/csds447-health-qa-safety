@@ -1,6 +1,5 @@
 # csds447-health-qa-safety
-
-Health QA Safety Benchmark for Medical Language Models
+Health-SafetyQA is a multi-layered safety evaluation framework for medical question-answering systems that combines a DistilBERT safety classifier, LoRA fine-tuning, and LLM-as-a-judge assessment to detect and prevent unsafe medical advice generation.
 
 ## Setup and Installation
 
