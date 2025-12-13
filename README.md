@@ -54,8 +54,14 @@ bash run_jobs.sh
 ```
 
 ### Fine-tuning with LoRA
-Prepare data: python src/prepare_instruct_data.py
-Train: python src/train_lora.py --model model_name --dataset dataset_name
+Prepare data: 
+```bash
+python src/prepare_instruct_data.py
+```
+Train: 
+```bash
+python src/train_lora.py --model model_name --dataset dataset_name
+```
 
 ## Models
 
@@ -71,8 +77,9 @@ Train: python src/train_lora.py --model model_name --dataset dataset_name
 
 ## Running the UI (Dr.Darla)
 To run the UI, make sure all the previous steps are done, meaning all dependencies are installed, and venv is running. After everything above is set up, run: 
+```bash
 python src/app.py
-
+```
 ## Citations
 
 If you use this benchmark, please cite the following papers:
