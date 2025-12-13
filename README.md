@@ -69,6 +69,10 @@ Train: python src/train_lora.py --model model_name --dataset dataset_name
 - **PubMedQA**: [https://huggingface.co/datasets/qiaojin/PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA)
 - **MedSafetyBench**: [https://github.com/AI4LIFE-GROUP/med-safety-bench](https://github.com/AI4LIFE-GROUP/med-safety-bench?brid=N6jqmxCFGHb5DAX1T8lZvg)
 
+## Running the UI (Dr.Darla)
+To run the UI, make sure all the previous steps are done, meaning all dependencies are installed, and venv is running. After everything above is set up, run: 
+python src/app.py
+
 ## Citations
 
 If you use this benchmark, please cite the following papers:
